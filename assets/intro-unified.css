@@ -63,3 +63,7 @@
 #presentation .intro-impact .proof-derma>div{text-align:center}
 #presentation .intro-impact .proof-metric small{width:100%;text-align:center}
 @media(max-width:699px){#presentation .intro-impact .intro-proof{grid-template-columns:repeat(2,minmax(0,1fr))}#presentation .intro-impact .proof-heading{grid-column:1/-1;flex-direction:column}}
+
+/* Visual cues for the four customer needs. */
+#needs-dialog .needs-card h3{display:flex;align-items:center;gap:8px;line-height:1.25}
+#needs-dialog .need-emoji{display:inline-flex;align-items:center;justify-content:center;flex:0 0 26px;width:26px;font-size:25px;line-height:1;font-family:"Segoe UI Emoji","Apple Color Emoji",sans-serif;letter-spacing:0}
