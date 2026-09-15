@@ -1,0 +1,45 @@
+/* Shared line identities: NMN pink, Daily Relief blue, Inner Beauty purple. */
+:root{color-scheme:dark;--line-nmn:#f1a5bd;--line-relief:#9acee0;--line-inner:#c9adeb;--nmn-soft:#30232a;--relief-soft:#1d2b31;--inner-soft:#292334;--theme-paper:#1b1917;--theme-text:#dacfc6;--theme-border:#675b51;--theme-active:#f4e7de;--theme-active-text:#342820}
+:root[data-theme=light]{color-scheme:light;--line-nmn:#ac4567;--line-relief:#246477;--line-inner:#75549b;--nmn-soft:#fff1f5;--relief-soft:#edf7fb;--inner-soft:#f4f0fc;--theme-paper:#f4f8fa;--theme-text:#576d78;--theme-border:#d3e0e5;--theme-active:#dcecf1;--theme-active-text:#246477}
+[data-product-line=nmn]{--line-accent:var(--line-nmn);--line-soft:var(--nmn-soft)}
+[data-product-line=relief]{--line-accent:var(--line-relief);--line-soft:var(--relief-soft)}
+[data-product-line=inner]{--line-accent:var(--line-inner);--line-soft:var(--inner-soft)}
+#presentation .sku-tile[data-product-line]{background:linear-gradient(150deg,var(--line-soft),#181615)!important;border-color:color-mix(in srgb,var(--line-accent) 45%,transparent)!important;border-top:3px solid var(--line-accent)!important}
+html[data-theme=light] #presentation .sku-tile[data-product-line]{background:linear-gradient(150deg,var(--line-soft),#fff)!important}
+#presentation .sku-tile[data-product-line] .sku-category{color:var(--line-accent)!important;border-color:color-mix(in srgb,var(--line-accent) 30%,transparent)!important}
+#presentation .sku-tile[data-product-line] .sku-line,#presentation .sku-tile[data-product-line] .sku-more{color:var(--line-accent)!important}
+#presentation .sku-tile[data-product-line] .sku-audience{background:var(--line-soft)!important;color:var(--line-accent)!important;border-color:color-mix(in srgb,var(--line-accent) 28%,transparent)!important}
+#presentation .sku-tile[data-product-line]:hover{border-color:var(--line-accent)!important}
+#presentation .sku-tile.inner .liquid-surface{background:radial-gradient(ellipse at 80% 65%,#9b74c54d,transparent 65%),var(--inner-soft)!important}
+#presentation .sku-tile.inner .liquid-surface:after{background:linear-gradient(150deg,#b99ad533,transparent 65%)!important;border-color:#b99ad54d!important}
+#presentation .sku-tile.inner .liquid-drop:before{background:radial-gradient(circle at 28% 68%,#f4ecff 0,#cbb2e4 24%,#9670b9 66%,#745494 100%)!important;border-color:#cbb2e4!important}
+#presentation .line-heading[data-product-line] b{color:var(--line-accent)!important}
+#presentation .line-heading .nmn-evidence-link{color:var(--line-nmn)!important;border-color:color-mix(in srgb,var(--line-nmn) 45%,transparent)!important;background:var(--nmn-soft)!important}
+#sku-dialog[data-product-line] .sku-detail-head{border-bottom-color:var(--line-accent)!important}
+#sku-dialog[data-product-line] .sku-detail-head small,#sku-dialog[data-product-line] .spec-col h3,#sku-dialog[data-product-line] .spec-stat strong{color:var(--line-accent)!important}
+#sku-dialog[data-product-line] .customer-ribbon,#sku-dialog[data-product-line] .spec-stat.photo-linked,#sku-dialog[data-product-line] .spec-stat.synergy-result{background:var(--line-soft)!important;border-color:color-mix(in srgb,var(--line-accent) 35%,transparent)!important}
+#sku-dialog[data-product-line] .customer-ribbon strong,#sku-dialog[data-product-line] .customer-ribbon>small,#sku-dialog[data-product-line] .evidence-tag{color:var(--line-accent)!important}
+#sku-dialog[data-product-line] .customer-tags span,#sku-dialog[data-product-line] .evidence-caption{background:var(--line-soft)!important;color:var(--line-accent)!important;border-color:color-mix(in srgb,var(--line-accent) 35%,transparent)!important}
+html[data-theme=light] #sku-dialog[data-product-line] .spec-stat,html[data-theme=light] #sku-dialog[data-product-line] .ingredient-list>span,html[data-theme=light] #sku-dialog[data-product-line] .spec-col h3>span{background:var(--line-soft)!important;border-color:color-mix(in srgb,var(--line-accent) 28%,transparent)!important}
+#ingredient-dialog .ingredient-guide-card{--ingredient-color:var(--line-relief)!important;--ingredient-soft:var(--relief-soft)}
+#ingredient-dialog .ingredient-guide-card:is([data-ingredient="NMN"],[data-ingredient="피크노제놀"],[data-ingredient="알파리포산"],[data-ingredient="글루타치온"],[data-ingredient="카르노신"]){--ingredient-color:var(--line-nmn)!important;--ingredient-soft:var(--nmn-soft)}
+#ingredient-dialog .ingredient-guide-card:is([data-ingredient="PDRN"],[data-ingredient="콜라겐"]){--ingredient-color:var(--line-inner)!important;--ingredient-soft:var(--inner-soft)}
+#ingredient-dialog .ingredient-guide-card .ingredient-card-role{color:var(--ingredient-color)!important;background:var(--ingredient-soft)!important}
+#ingredient-dialog .ingredient-guide-card.is-selected{background:var(--ingredient-soft)!important;border-color:var(--ingredient-color)!important;box-shadow:inset 0 3px var(--ingredient-color)!important}
+#needs-dialog .needs-products>button[data-product-line]{border-top:2px solid var(--line-accent)!important;background:var(--line-soft)!important}
+#needs-dialog .needs-products>button[data-product-line] b{color:var(--line-accent)!important}
+#presentation .ingredient-unified>.ingredient-trigger:nth-child(1),#presentation .ingredient-unified>.ingredient-trigger:nth-child(3){color:var(--line-nmn)!important}
+#presentation .ingredient-unified>.ingredient-trigger:nth-child(4),#presentation .ingredient-unified>.ingredient-trigger:nth-child(5){color:var(--line-relief)!important}
+#presentation .ingredient-unified>.ingredient-trigger:nth-child(2),#presentation .ingredient-unified>.ingredient-trigger:nth-child(6){color:var(--line-inner)!important}
+html[data-theme=light] #presentation header::after{background:linear-gradient(90deg,#f1a5bd 0 50%,#84c1cf 50% 90%,#b69ad8 90% 100%)!important}
+html[data-theme=light] #presentation .trade-benefits>button:nth-child(n){border-top-color:#84c1cf!important}
+html[data-theme=light] #presentation .ai-free{background:#edf7f9!important;color:#246477!important;border-color:#d3e0e5!important}
+/* Compact, touch-friendly controls on the cover and on every content page. */
+.theme-picker,#presentation .footer .theme-picker{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--theme-border)!important;border-radius:24px;background:var(--theme-paper)!important;flex:none}
+.theme-picker button,#presentation .footer .theme-picker button{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:34px;padding:7px 10px;line-height:1;font:600 12px PR,Pretendard,sans-serif;border:0!important;border-radius:20px;background:transparent!important;color:var(--theme-text)!important;white-space:nowrap;box-shadow:none!important}
+.theme-picker button[aria-pressed=true],#presentation .footer .theme-picker button[aria-pressed=true]{background:var(--theme-active)!important;color:var(--theme-active-text)!important}
+.theme-picker button:focus-visible{outline:2px solid var(--line-relief)!important;outline-offset:2px}
+.theme-picker svg{width:15px;height:15px;flex:none}
+.cover-theme-picker{position:absolute;left:max(22px,env(safe-area-inset-left));bottom:max(20px,env(safe-area-inset-bottom));z-index:2}
+#presentation .ingredient-secondary>.ingredient-trigger{min-height:28px!important}
+@media(max-width:699px){#presentation .footer>div{flex-wrap:wrap;justify-content:flex-end}#presentation .footer{gap:8px}.theme-picker button,#presentation .footer .theme-picker button{min-height:38px}.cover-theme-picker{left:12px;bottom:20px}#proposal-cover #cover-start{right:12px;padding:12px 16px}}
