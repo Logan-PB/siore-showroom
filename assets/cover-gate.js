@@ -11,6 +11,13 @@
     if (!cover.open) cover.showModal();
     cover.focus({preventScroll:true});
   };
+  window.toggleCoverFullscreen = async () => {
+    await full();
+    // A fullscreen element enters the top layer after an already-open dialog.
+    // Reopen the cover above it so the protected presentation never shows blank.
+    if (cover.open) cover.close();
+    window.openProposalCover();
+  };
   cover.addEventListener('cancel', event => event.preventDefault());
   cover.addEventListener('close', () => {
     if (!released) window.openProposalCover();
@@ -18,7 +25,7 @@
   document.addEventListener('keydown', event => {
     if (!cover.open) return;
     if (event.key === 'Tab') return;
-    if (event.target === start && ['Enter', ' '].includes(event.key)) return;
+    if (event.target.closest('button') && ['Enter', ' '].includes(event.key)) return;
     event.preventDefault();
     event.stopImmediatePropagation();
   }, true);
