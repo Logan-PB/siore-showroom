@@ -52,3 +52,14 @@
 
 /* Compact secondary ingredients and orange section title. */
 .intro-unified .ingredient-heading b{color:#ff804d;font-weight:700}.intro-unified .ingredient-heading>span{color:#ff804d}.ingredient-secondary{justify-content:flex-start;gap:30px}.ingredient-secondary b{font-size:15px;font-weight:600}.ingredient-secondary>div{gap:7px}@media(max-width:699px){.ingredient-secondary{gap:10px 18px}.ingredient-secondary b{font-size:13px}}
+
+/* Center the evidence strip as one consistent set of credentials. */
+#presentation .intro-impact .intro-proof{grid-template-columns:185px repeat(4,minmax(0,1fr))}
+#presentation .intro-impact .proof-heading{align-items:center;justify-content:center;text-align:center;padding:12px 10px;gap:6px}
+#presentation .intro-impact .proof-heading span{font-size:9px;letter-spacing:1.2px}
+#presentation .intro-impact .proof-heading b{font-size:18px;font-weight:800;letter-spacing:-.6px;white-space:nowrap}
+#presentation .intro-impact .proof-metric{align-items:center;justify-content:center;text-align:center;padding:10px 12px}
+#presentation .intro-impact .proof-derma{flex-direction:row;gap:10px}
+#presentation .intro-impact .proof-derma>div{text-align:center}
+#presentation .intro-impact .proof-metric small{width:100%;text-align:center}
+@media(max-width:699px){#presentation .intro-impact .intro-proof{grid-template-columns:repeat(2,minmax(0,1fr))}#presentation .intro-impact .proof-heading{grid-column:1/-1;flex-direction:column}}
