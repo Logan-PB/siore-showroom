@@ -1,0 +1,48 @@
+/* Keep the approved card sizes and original product images. */
+#presentation .featured-skus .sku-tile[data-motion]{cursor:default}
+#presentation .featured-skus .sku-tile[data-motion]:hover{transform:none}
+#presentation .featured-skus button.texture-demo{padding:0;border:0!important;border-radius:8px;background:transparent!important;color:var(--line-accent);overflow:visible;cursor:pointer;box-shadow:none!important;touch-action:manipulation}
+#presentation .featured-skus button.texture-demo:focus-visible{outline:2px solid var(--line-accent);outline-offset:-3px}
+#presentation .featured-skus .pump-packshot{height:303px;width:100%;margin:18px 0;display:block;overflow:visible;filter:drop-shadow(7px 12px 12px #0005)}
+#presentation .featured-skus [data-motion] .sku-product,#presentation .featured-skus [data-motion] .pdrn-stick{animation:none!important}
+#presentation .featured-skus .texture-hint{position:absolute;left:50%;bottom:0;transform:translateX(-50%);display:flex;align-items:center;gap:4px;white-space:nowrap;font-size:10px;font-weight:500;line-height:1;padding:5px 8px;color:var(--line-accent);background:var(--line-soft);border-radius:20px;opacity:.9;pointer-events:none}
+.texture-hint svg{width:12px;height:12px}
+#presentation .featured-skus .texture-spec{border:0!important;border-radius:4px;background:transparent!important;box-shadow:none;padding:5px 12px;min-height:32px;margin-top:9px!important;line-height:1.2}
+#presentation .featured-skus .texture-spec:hover{text-decoration:underline;text-underline-offset:4px}
+#presentation .featured-skus .texture-spec:focus-visible{outline:2px solid var(--line-accent);outline-offset:2px}
+#presentation .featured-skus .texture-ingredient-note{font-size:9px;line-height:1.2;color:var(--line-accent);margin-top:7px;white-space:nowrap}
+#presentation .featured-skus [data-motion=liquid] .texture-spec{margin-top:1px!important}
+.pump-head{transform:translateY(0)}
+.dispense-effects{opacity:0}
+.dispense-thread{stroke-dasharray:1;stroke-dashoffset:1}
+.milk-bead,.milk-glint{transform-origin:141px 277px;opacity:0}
+.foam-cloud{transform-origin:145px 200px;transform:scale(.15);opacity:0}
+.foam-satellites{opacity:0}
+.gel-demo{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;opacity:0}
+.gel-ribbon,.gel-highlight{stroke-dasharray:1;stroke-dashoffset:1}
+.is-dispensing .pump-head{animation:pumpPress 3.2s ease-in-out both}
+.is-dispensing .dispense-effects{animation:dispenseShow 3.2s both}
+.is-dispensing .dispense-thread{animation:dispenseFlow 3.2s ease-in-out both}
+.is-dispensing .milk-bead,.is-dispensing .milk-glint{animation:milkFall 3.2s ease-in-out both}
+.is-dispensing .foam-cloud{animation:foamGrow 3.2s ease-in-out both}
+.is-dispensing .foam-satellites{animation:foamBubbles 3.2s ease-out both}
+#presentation .featured-skus .is-dispensing[data-motion=gel] .sku-product{animation:tubePress 3.2s ease-in-out both!important;transform-origin:50% 72%}
+.is-dispensing .gel-demo{animation:dispenseShow 3.2s both}
+.is-dispensing .gel-ribbon,.is-dispensing .gel-highlight{animation:gelFlow 3.2s ease-in-out both}
+#presentation .featured-skus .is-dispensing[data-motion=liquid] .pdrn-stick{animation:stickPress 3.2s ease-in-out both!important;transform-origin:50% 60%}
+#presentation .featured-skus .is-dispensing .liquid-drop{animation:liquidPour 3.2s ease-in-out both}
+.is-dispensing .texture-hint{opacity:.5!important}
+@keyframes pumpPress{0%,13%,75%,100%{transform:translateY(0)}25%,47%{transform:translateY(22px)}60%{transform:translateY(-3px)}}
+@keyframes dispenseShow{0%,18%,100%{opacity:0}24%,76%{opacity:1}94%{opacity:0}}
+@keyframes dispenseFlow{0%,22%{stroke-dashoffset:1}44%,58%{stroke-dashoffset:0}73%,100%{stroke-dashoffset:-1}}
+@keyframes milkFall{0%,32%{opacity:0;transform:translateY(-20px) scale(.2)}44%{opacity:1;transform:translateY(0) scale(.7)}61%{opacity:1;transform:translateY(38px) scale(1)}83%,100%{opacity:0;transform:translateY(145px) scale(.82,1.15)}}
+@keyframes foamGrow{0%,28%{opacity:0;transform:scale(.15)}48%{opacity:1;transform:scale(.9)}65%{opacity:1;transform:translateY(15px) scale(1.16)}92%,100%{opacity:0;transform:translateY(29px) scale(1.24)}}
+@keyframes foamBubbles{0%,45%{opacity:0;transform:translateY(20px)}60%{opacity:.9}87%,100%{opacity:0;transform:translateY(-55px)}}
+@keyframes tubePress{0%,12%,80%,100%{transform:scale(1)}30%,46%{transform:scale(.955,1.014)}63%{transform:scale(1.01,.997)}}
+@keyframes gelFlow{0%,22%{stroke-dashoffset:1}63%,74%{stroke-dashoffset:0}100%{stroke-dashoffset:-1}}
+@keyframes stickPress{0%,12%,80%,100%{transform:rotate(0) scale(1)}30%,50%{transform:rotate(-4deg) scale(.965,1.012)}}
+@keyframes liquidPour{0%,15%,100%{opacity:1;transform:translate(0,0) scale(1)}28%{opacity:1;transform:translate(-3px,8px) scale(.8,1.2)}65%{opacity:1;transform:translate(-8px,92px) scale(.95,1.1)}82%{opacity:0;transform:translate(-8px,127px) scale(.5)}83%,88%{opacity:0;transform:translate(0,0) scale(.6)}}
+@media(max-width:1000px) and (orientation:portrait){#presentation .featured-skus .pump-packshot{height:240px}}
+@media(max-width:699px){#presentation .featured-skus .pump-packshot{height:190px}.texture-hint{font-size:9px!important}}
+@media(prefers-reduced-motion:reduce){.is-dispensing .pump-head,.is-dispensing .dispense-effects,.is-dispensing .dispense-thread,.is-dispensing .milk-bead,.is-dispensing .milk-glint,.is-dispensing .foam-cloud,.is-dispensing .foam-satellites,.is-dispensing .gel-demo,.is-dispensing .gel-ribbon,.is-dispensing .gel-highlight,#presentation .featured-skus .is-dispensing .sku-product,#presentation .featured-skus .is-dispensing .pdrn-stick,#presentation .featured-skus .is-dispensing .liquid-drop{animation:none!important}.is-dispensing .dispense-effects,.is-dispensing .gel-demo,.is-dispensing .foam-cloud,.is-dispensing .milk-bead{opacity:1;transform:none}.is-dispensing .dispense-thread,.is-dispensing .gel-ribbon,.is-dispensing .gel-highlight{stroke-dashoffset:0}}
+@media print{.texture-hint,.dispense-effects,.gel-demo{display:none!important}.pump-head{transform:none!important;animation:none!important}}
