@@ -1,0 +1,41 @@
+/* ============================================================
+   추가 업데이트 스타일 (2026-09) — 기존 파일은 건드리지 않고
+   새 클래스/터치 보정만 덧붙이는 방식으로 작성했습니다.
+   1) 세팅사진 앨범(추가/삭제) UI
+   2) 터치스크린에서 hover 효과가 죽는 문제 보정 (:active)
+   3) 하단 유틸버튼 "설정" 아이콘으로 정리
+   ============================================================ */
+
+/* ---- 1) 세팅사진 앨범 UI ---- */
+.vmd-photo-card{position:relative}
+.vmd-photo-card>button{all:unset;display:block;cursor:pointer;width:100%;box-sizing:border-box}
+.vmd-photo-card>button>span{display:flex;justify-content:space-between;align-items:center;padding:11px 15px;font-size:13px;gap:6px}
+.vmd-photo-card>button>span small{display:inline-block;margin-left:6px;padding:2px 7px;border-radius:20px;background:#f65324;color:#fff;font-size:10px;white-space:nowrap}
+.vmd-photo-remove{position:absolute;top:8px;right:8px;width:30px;height:30px;border-radius:50%;border:none;background:#000a;color:#fff;font-size:17px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;z-index:2}
+.vmd-photo-remove:hover,.vmd-photo-remove:active{background:#f65324}
+.vmd-photo-add{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:211px;border:2px dashed #6c4b34;border-radius:10px;background:transparent;color:inherit;cursor:pointer;font-size:13px}
+.vmd-photo-add-icon{font-size:30px;line-height:1;color:#f65324}
+.vmd-photo-add small{display:block;font-size:11px;opacity:.7;margin-top:2px}
+:root[data-theme="light"] .vmd-photo-add{border-color:#c9d8dd}
+@media(max-width:699px){.vmd-photo-add{min-height:180px}}
+
+/* ---- 2) 터치 피드백 보정: 마우스 hover가 없는 기기(태블릿)에서
+   눌렀을 때(:active) 살짝 반응하도록 보정 ---- */
+@media (hover: none){
+  .support-card:active,.partner-card:active,.sku-tile:active,.overview-card:active{
+    transform:translateY(-5px);transition:transform .12s ease-out
+  }
+  .frame:active{transform:translateY(-8px);transition:transform .12s ease-out}
+  .vmd-photo-card>button:active{opacity:.85}
+  button:active{opacity:.85}
+}
+
+/* ---- 3) 하단 유틸버튼 "설정" 메뉴로 정리 ---- */
+.quick-settings-wrap{position:relative;display:inline-flex}
+.quick-settings-btn{display:flex;align-items:center;gap:6px}
+/* 기존 규칙 .footer div{display:flex}(타입+클래스, 상세도 0-1-1)보다 상세도가 낮으면
+   묻힐 수 있어, 아래처럼 두 클래스를 조합(0-2-0)해 항상 이기도록 함 */
+.quick-settings-wrap .quick-settings-panel{position:absolute;bottom:calc(100% + 10px);left:0;background:#181411;border:1px solid #655d57;border-radius:12px;padding:10px;display:none;flex-direction:column;gap:6px;min-width:180px;box-shadow:0 12px 30px #0008;z-index:50}
+.quick-settings-wrap .quick-settings-panel.open{display:flex}
+.quick-settings-panel>*{margin:0!important;width:100%;justify-content:flex-start!important}
+:root[data-theme="light"] .quick-settings-panel{background:#fff;border-color:#d3e0e5}
