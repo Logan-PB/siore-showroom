@@ -1,0 +1,14 @@
+{
+  "name": "SIORÉ 약국 파트너십 제안",
+  "short_name": "SIORÉ",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#100f0e",
+  "theme_color": "#f65324",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
