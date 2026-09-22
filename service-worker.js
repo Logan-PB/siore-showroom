@@ -3,7 +3,7 @@
    - 콘텐츠를 바꾼 뒤 태블릿에 새 버전을 반영하려면 CACHE_NAME 값을 바꿔서
      새로 배포하세요 (예: 'siore-showroom-v1' -> 'siore-showroom-v2').
    - 같은 출처(이 사이트 자체 파일)만 캐싱하며, 외부 사이트 요청은 건드리지 않습니다. */
-const CACHE_NAME = 'siore-showroom-v1';
+const CACHE_NAME = 'siore-showroom-song-20260923';
 
 self.addEventListener('install', () => {
   self.skipWaiting();
