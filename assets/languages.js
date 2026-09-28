@@ -27,6 +27,11 @@
  }
  function render(){
   observer.disconnect();
+  document.querySelectorAll('dialog:not(#proposal-cover)').forEach(dialog=>{
+   if(dialog.querySelector('.dialog-language-bar'))return;
+   const bar=document.createElement('div');bar.className='dialog-language-bar';
+   bar.append(selector());dialog.prepend(bar);
+  });
   const walk=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
   while(n=walk.nextNode()){
    if(n.parentElement.closest('script,style,[data-language-control],svg'))continue;
