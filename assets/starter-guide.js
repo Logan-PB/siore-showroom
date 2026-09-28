@@ -21,8 +21,8 @@
   plan.classList.add('starter-plan');
   plan.innerHTML = `<div class="starter-plan-heading"><span class="eyebrow">FIRST ORDER · SKU SELECTION</span><h3>어떤 구성으로 시작할까요?</h3></div><div class="starter-entry-options"><button class="starter-entry" data-starter-mode="core"><span class="starter-entry-title"><i>A</i><span><b>핵심 4종 구성</b><small>주력 SKU로 시작하는 약국</small></span><em>구성 보기 ↗</em></span><span class="starter-mini-products">${CORE.map(miniProduct).join('')}</span><span class="starter-entry-copy">토너·세럼 + 피부에 맞춰 제안하는 크림 2종</span></button><button class="starter-entry" data-starter-mode="needs"><span class="starter-entry-title"><i>B</i><span><b>니즈별 3종 구성</b><small>우리 약국의 주요 고객에 맞춰</small></span><em>비교하기 ↗</em></span><span class="starter-need-chips">${needsRoutines.map(r=>`<span><i aria-hidden="true">${r.emoji}</i>${r.title}</span>`).join('')}</span><span class="starter-entry-copy">네 가지 상담 루틴 중 선택 · 여러 구성 조합 가능</span></button></div><div class="starter-saved"><div><strong id="starter-page-count">첫 사입 SKU를 골라보세요.</strong><span id="starter-page-lines">추천 구성에서 선택하고 제품을 추가·변경할 수 있습니다.</span></div><button id="starter-page-review">선정 목록 보기 ↗</button></div><div class="starter-order-path"><span><b>01</b>SKU 선정</span><i>→</i><span><b>02</b>가입·거래 조건 확인</span><i>→</i><span><b>03</b>첫 주문·진열</span></div><div class="closing-tools"><button onclick="openPrices()">SKU 공급단가표 ↗</button><a href="https://logan-pb.github.io/siore-skin/guides/siore_guide_12.html" target="_blank" rel="noopener">거래 안내·서류 제출 ↗</a></div>`;
   document.querySelector('.closing-heading>p:last-child').textContent = '제품 구성부터 정하고, 우리 약국의 첫 주문을 준비하세요.';
-  document.querySelector('.closing-enroll .eyebrow').textContent = 'NEXT STEP · B2B';
-  document.querySelector('.closing-enroll h3').textContent = '구성을 정했다면, 가입';
+  document.querySelector('.closing-enroll .eyebrow').textContent = 'NEXT STEP · PARTNERSHIP';
+  document.querySelector('.closing-enroll h3').textContent = '시오레 입점, 여기서 시작하세요';
 
   const dialog = document.createElement('dialog');
   dialog.id = 'starter-guide';
