@@ -74,3 +74,12 @@ html:not([lang=ko]) #proposal-cover .cover-ingredient-ribbon span{font-size:12px
 #presentation .closing-enroll .enrollment-actions{display:flex;flex-wrap:wrap;gap:8px}
 #presentation .closing-enroll .enrollment-actions a{background:#B8DDD4!important;color:#173D42!important;border:1px solid #B8DDD4}
 #presentation .closing-enroll .enrollment-actions button{background:transparent!important;color:#FFF8EF!important;border:1px solid #7DA8A6}
+
+/* Consistent typography and alignment for the three ordering steps. */
+#presentation .starter-order-path{display:grid;grid-template-columns:minmax(0,1fr) 20px minmax(0,1fr) 20px minmax(0,1fr);align-items:center;gap:12px;padding:14px 0 0;font-size:14px;line-height:1.4}
+#presentation .starter-order-path>span{display:flex;align-items:center;gap:8px;min-width:0;word-break:keep-all}
+#presentation .starter-order-path b{font-size:16px;line-height:1.4;margin:0;flex:none;font-weight:700}
+#presentation .starter-order-path>i{text-align:center;font-size:16px}
+#presentation .starter-plan .closing-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+#presentation .starter-plan .closing-tools>button,#presentation .starter-plan .closing-tools>a{display:flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:46px;margin:0;padding:12px 16px;font:600 14px/1.4 inherit;font-family:inherit;font-size:14px;font-weight:600;line-height:1.4;white-space:normal;text-align:center;word-break:keep-all}
+@media(max-width:600px){#presentation .starter-order-path{gap:6px;font-size:12px;grid-template-columns:minmax(0,1fr) 12px minmax(0,1fr) 12px minmax(0,1fr)}#presentation .starter-order-path>span{gap:5px}#presentation .starter-order-path b{font-size:14px}#presentation .starter-plan .closing-tools{gap:8px}#presentation .starter-plan .closing-tools>button,#presentation .starter-plan .closing-tools>a{font-size:12px;padding:10px 8px}}
