@@ -2,8 +2,9 @@
 (() => {
  document.title='SIORÉ | Brand & Signature Products';
  document.querySelectorAll('#presentation nav [data-page]').forEach(b=>{if(+b.dataset.page>1)b.remove()});
- document.querySelectorAll('#presentation main > .screen').forEach((s,i)=>{if(i>1)s.remove()});
- document.querySelectorAll('.sku-route > div,.needs-entry,.benefits-heading > button').forEach(el=>el.remove());
+ document.querySelectorAll('#presentation main > .screen').forEach((s,i)=>{if(i>2)s.remove()});
+ document.querySelectorAll('.sku-route button[onclick="go(3)"],.needs-entry,.benefits-heading > button').forEach(el=>el.remove());
+ document.querySelector('.sku-route button[onclick="go(2)"]').textContent='전제품 스펙 보기 ↗';
  document.querySelectorAll('.trade-benefits > button').forEach(button=>{
   button.removeAttribute('onclick');button.tabIndex=-1;button.setAttribute('aria-disabled','true');button.style.cursor='default';
  });
