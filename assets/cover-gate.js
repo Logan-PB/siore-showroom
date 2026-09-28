@@ -24,6 +24,7 @@
   });
   document.addEventListener('keydown', event => {
     if (!cover.open) return;
+    if (event.target.closest('select,input,textarea')) return;
     if (event.key === 'Tab') return;
     if (event.target.closest('button') && ['Enter', ' '].includes(event.key)) return;
     event.preventDefault();

@@ -1,0 +1,50 @@
+/* Localized copy must wrap within the same visual panels, without clipping. */
+html:not([lang=ko]) #presentation .intro-impact .intro-unified h1{font-size:34px!important;line-height:1.16!important;letter-spacing:-.6px;white-space:normal!important;text-wrap:balance;max-width:670px}
+html:not([lang=ko]) .intro-unified h1 em{display:block}
+html:not([lang=ko]) .intro-editorial{width:77%}
+html:not([lang=ko]) .intro-origin{white-space:normal;max-width:650px;line-height:1.4}
+html:not([lang=ko]) .ingredient-unified{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+html:not([lang=ko]) .ingredient-unified>*{min-width:0!important}
+html:not([lang=ko]) .ingredient-item b{white-space:normal!important;text-align:center;font-size:14px;line-height:1.2;max-width:100%}
+html:not([lang=ko]) .ingredient-secondary{gap:12px;display:grid;grid-template-columns:repeat(6,minmax(0,1fr))}
+html:not([lang=ko]) .ingredient-secondary>*{min-width:0!important;gap:4px!important}
+html:not([lang=ko]) .ingredient-secondary b{white-space:normal!important;font-size:12px;line-height:1.2}
+html:not([lang=ko]) #presentation .intro-impact .proof-heading b{white-space:normal!important;font-size:14px;line-height:1.25}
+html:not([lang=ko]) .proof-metric b{white-space:normal;line-height:1.25}
+html:not([lang=ko]) .proof-non>strong{font-size:21px!important;letter-spacing:-.5px}
+html:not([lang=ko]) .trade-benefits b{white-space:normal!important;line-height:1.3;font-size:14px!important}
+html:not([lang=ko]) .trade-benefits .benefit-top{gap:5px}
+html:not([lang=ko]) .trade-benefits small{letter-spacing:0;line-height:1.2}
+html:not([lang=ko]) #presentation .sku-tile>strong{white-space:normal;min-height:52px;font-size:21px!important;line-height:1.2;text-wrap:balance}
+html:not([lang=ko]) #presentation .lineup-grid .sku-tile>strong{font-size:14px!important;min-height:34px}
+html:not([lang=ko]) #presentation .sku-audience{white-space:normal;line-height:1.25;min-height:30px;font-size:14px}
+html:not([lang=ko]) #presentation .sku-more{white-space:normal;font-size:12px;line-height:1.3}
+html:not([lang=ko]) .sku-detail-head h2{font-size:25px!important;line-height:1.25;overflow-wrap:anywhere}
+html:not([lang=ko]) .spec-stat{flex-wrap:wrap;gap:5px 12px}
+html:not([lang=ko]) .spec-stat>div{min-width:0;flex:1 1 140px}
+html:not([lang=ko]) .customer-ribbon{flex-wrap:wrap;gap:8px}
+html:not([lang=ko]) .customer-ribbon strong{white-space:normal!important}
+html:not([lang=ko]) .partner-body h3{font-size:22px!important;line-height:1.2}
+html:not([lang=ko]) .partner-body p{font-size:12px;line-height:1.45}
+html:not([lang=ko]) .needs-products b{white-space:normal;font-size:12px}
+html:not([lang=ko]) .needs-card h3{font-size:24px;line-height:1.2}
+html:not([lang=ko]) .ingredient-guide-card h3{font-size:20px;overflow-wrap:anywhere}
+html:not([lang=ko]) .ingredient-guide-card p{line-height:1.6}
+html:not([lang=ko]) #proposal-cover{--cover-footer:100px}
+html:not([lang=ko]) #proposal-cover .cover-ingredient-ribbon{align-items:flex-start;padding-top:12px;white-space:normal}
+html:not([lang=ko]) #proposal-cover .cover-ingredient-ribbon span{font-size:12px!important;line-height:1.4;max-width:85%}
+@media(min-width:700px) and (orientation:landscape){
+ html:not([lang=ko]) #presentation header{flex-wrap:nowrap;height:76px}
+ html:not([lang=ko]) #presentation header nav{order:0;width:auto;overflow:visible}
+ html:not([lang=ko]) #presentation .screen{overflow-y:auto;overflow-x:hidden}
+}
+@media(max-width:699px),(orientation:portrait){
+ html:not([lang=ko]) .intro-editorial{width:100%}
+ html:not([lang=ko]) #presentation .intro-impact .intro-unified h1{font-size:26px!important}
+ html:not([lang=ko]) .ingredient-secondary{grid-template-columns:repeat(3,minmax(0,1fr))}
+ html:not([lang=ko]) .ingredient-unified{grid-template-columns:repeat(3,minmax(0,1fr))}
+ html:not([lang=ko]) .sku-detail-head{flex-wrap:wrap}
+ html:not([lang=ko]) .spec-columns{grid-template-columns:1fr}
+}
+
+.global-share-link{display:block;padding:13px;border:1px solid #87796b;border-radius:24px;color:inherit;text-align:center;text-decoration:none;font-size:13px}
