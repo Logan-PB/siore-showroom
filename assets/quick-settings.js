@@ -4,6 +4,7 @@
 (() => {
   const wrap = document.querySelector('#presentation .footer > div');
   if (!wrap || wrap.children.length < 2) return;
+  Array.from(wrap.querySelectorAll('button')).filter(el => ['겉표지', '움직임 끄기', '움직임 켜기'].includes(el.textContent.trim())).forEach(el => el.remove());
   const nextBtn = wrap.lastElementChild; // "다음 →" 버튼은 그대로 크게 노출
   const toMove = Array.from(wrap.children).filter(el => el !== nextBtn);
   if (!toMove.length) return;
