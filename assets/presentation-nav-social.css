@@ -1,0 +1,12 @@
+
+/* Larger presentation navigation and featured social block */
+#presentation>header .brand,#presentation>header .cover-brand{font-size:36px!important;font-weight:700!important;letter-spacing:4px!important;padding:12px 17px!important;color:#ffe4cf;border:1px solid #a67c5b;border-radius:12px;background:#2d231d}
+#presentation nav{gap:10px!important}#presentation nav button{font-size:18px!important;font-weight:650!important;padding:13px 19px!important;border-radius:11px!important;border:1px solid #635044!important;background:#2b251f!important;color:#f7e4d5!important}
+#presentation nav button[aria-pressed=true]{background:#ff733d!important;color:#fff!important;border-color:#ffae78!important;box-shadow:0 3px 16px #ff733d33}
+#presentation .song-feature{min-height:174px;padding:24px 28px!important;gap:26px;border-width:2px}
+#presentation .song-emblem{width:80px;height:80px}#presentation .song-emblem svg{width:48px;height:48px}
+#presentation .song-copy h3{font-size:32px}#presentation .song-copy p{font-size:16px}#presentation .song-copy small{font-size:12px}
+#presentation .song-reach strong{font-size:40px}#presentation .song-open{font-size:16px;padding:18px 23px}
+:root[data-theme=light] #presentation nav button{background:#f6eae1!important;color:#4a342b!important;border-color:#d7baa6!important}:root[data-theme=light] #presentation nav button[aria-pressed=true]{background:#bd5839!important;color:white!important}
+
+.song-post-photo{display:block;flex:0 0 180px}.song-post-photo img{width:180px;height:220px;object-fit:contain;display:block;border-radius:9px;background:#eee9e3}

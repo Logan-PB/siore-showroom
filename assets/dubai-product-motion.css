@@ -1,0 +1,39 @@
+.featured-skus > .sku-tile > .sku-swatch { display:none !important; }
+.featured-skus .sku-category { font-size:clamp(15px,1.2vw,21px) !important; font-weight:800 !important; letter-spacing:.08em !important; }
+.featured-skus .sku-tile strong { font-size:clamp(13px,1.18vw,20px) !important; line-height:1.18 !important; }
+.featured-skus .sku-visual.sku-domino-motion { position:relative; display:block; height:303px !important; margin:18px 0 !important; overflow:hidden !important; }
+.sku-domino-stage { position:relative; width:100%; height:100%; isolation:isolate; }
+.sku-full-product { position:absolute !important; inset:0 !important; z-index:3; width:100% !important; height:100% !important; margin:0 !important; object-fit:contain !important; opacity:1; transform:scale(1); transform-origin:center; filter:none !important; }
+.sku-head-focus { position:absolute; inset:0 -4%; z-index:4; opacity:0; overflow:hidden; transform:rotate(-7deg); transform-origin:50% 35%; }
+.sku-head-focus svg { width:100%; height:100%; overflow:hidden; transform:translateY(22%) scale(1.78); transform-origin:50% 29%; }
+.sku-focus-body,.sku-focus-cap,.sku-real-pump { transform-box:fill-box; }
+.sku-focus-cap { transform-origin:55% 92%; }
+.sku-focus-cap rect { fill:rgba(247,249,249,.78); stroke:rgba(255,255,255,.92); stroke-width:2; }
+.sku-focus-cap path { fill:none; stroke:rgba(255,255,255,.72); stroke-width:3; stroke-linecap:round; }
+.sku-cap-cover { fill:#2a1c21; }
+.sku-real-pump { transform-origin:center; }
+.sku-real-pump rect,.sku-real-pump path { fill:#f7f7f4; stroke:#aaa9a4; stroke-width:1.2; }
+.sku-texture-clean { position:absolute; z-index:2; left:-2%; right:-2%; top:5%; bottom:0; overflow:hidden; opacity:0; clip-path:inset(0 100% 0 0); transform:translateX(-3%) scale(.96); }
+.sku-texture-clean img { display:block; width:100% !important; height:100% !important; margin:0 !important; object-fit:contain !important; filter:none !important; opacity:1 !important; }
+.sku-texture-claim { position:absolute; z-index:5; left:6%; right:18%; bottom:11%; margin:0 !important; padding:10px 12px; border-radius:8px; background:rgba(18,15,14,.86); color:#fff !important; text-align:left; opacity:0; transform:translateY(12px) scale(.92); box-shadow:none; }
+.sku-texture-claim b { display:block; color:#fff; font-size:clamp(13px,1.02vw,17px); line-height:1.2; letter-spacing:-.02em; }
+.sku-texture-claim span { display:block; margin-top:4px; color:#ffd1bc; font-size:clamp(9px,.72vw,12px); line-height:1.28; letter-spacing:-.01em; }
+.is-gel .sku-head-focus { transform:rotate(8deg); transform-origin:50% 72%; }
+.is-gel .sku-head-focus svg { transform:translateY(-19%) scale(1.8); transform-origin:50% 72%; }
+.is-gel .sku-cap-cover { fill:#1b2a2d; }
+.sku-gel-nozzle rect { fill:#e7eaeb; stroke:#b8bec0; stroke-width:1.3; }
+.is-gel .sku-focus-cap { transform-origin:22% 12%; }
+.is-gel .sku-texture-clean { top:2%; bottom:10%; }
+.is-domino-active .sku-full-product { animation:dominoWhole 4.5s linear both; }
+.is-domino-active .sku-texture-clean { animation:dominoTexture 4.5s linear both; }
+.is-domino-active .sku-texture-claim { animation:dominoClaim 4.5s cubic-bezier(.2,.8,.25,1) both; }
+@keyframes dominoWhole { 0%,18%{opacity:1;transform:translate(0,0) scale(1)} 34%,86%{opacity:1;transform:translate(28%,-18%) scale(.56)} 96%,100%{opacity:1;transform:translate(0,0) scale(1)} }
+@keyframes dominoHead { 0%,12%{opacity:0;transform:rotate(-7deg) scale(.98)} 23%,82%{opacity:1;transform:rotate(-7deg) scale(1)} 94%,100%{opacity:0;transform:rotate(-7deg) scale(.98)} }
+@keyframes dominoCap { 0%,25%{transform:translate(0,0) rotate(0)} 38%,80%{transform:translate(34px,-43px) rotate(11deg)} 92%,100%{transform:translate(0,0) rotate(0)} }
+@keyframes dominoGelCap { 0%,25%{transform:translate(0,0) rotate(0)} 38%,80%{transform:translate(-46px,21px) rotate(58deg)} 92%,100%{transform:translate(0,0) rotate(0)} }
+@keyframes dominoPump { 0%,39%,54%,100%{transform:translateY(0)} 44%,49%{transform:translateY(7px)} }
+@keyframes dominoTexture { 0%,20%{opacity:0;clip-path:inset(0 100% 0 0);transform:translateX(-3%) scale(.96)} 34%{opacity:1;clip-path:inset(0 76% 0 0);transform:translateX(-1%) scale(.98)} 70%,88%{opacity:1;clip-path:inset(0 0 0 0);transform:translateX(0) scale(1)} 96%,100%{opacity:0;clip-path:inset(0 0 0 0);transform:translateX(0) scale(1)} }
+@keyframes dominoClaim { 0%,67%{opacity:0;transform:translateY(12px) scale(.92)} 76%,88%{opacity:1;transform:translateY(0) scale(1)} 96%,100%{opacity:0;transform:translateY(-4px) scale(.98)} }
+@media(max-width:1000px){.featured-skus .sku-visual.sku-domino-motion{height:250px!important}.featured-skus .sku-tile strong{font-size:13px!important}.sku-texture-clean{left:-5%;right:-5%}.sku-texture-claim{left:4%;right:10%;bottom:8%;padding:8px}.sku-texture-claim b{font-size:12px}.sku-texture-claim span{font-size:9px}}
+@media(max-width:699px){.featured-skus .sku-visual.sku-domino-motion{height:215px!important}.sku-head-focus svg{transform:translateY(22%) scale(1.67)}.is-gel .sku-head-focus svg{transform:translateY(-17%) scale(1.7)}}
+@media(prefers-reduced-motion:reduce){.sku-full-product,.sku-head-focus,.sku-focus-cap,.sku-real-pump,.sku-texture-clean{animation:none!important}.sku-full-product{opacity:1!important}}
