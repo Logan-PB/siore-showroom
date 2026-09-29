@@ -30,6 +30,8 @@
   };
   let dominoTimer = 0;
   let dominoIndex = 0;
+  let mobileObserver;
+  const mobileTimers = new Map();
   let renderedClaimLanguage = null;
 
   function safe(value) {
@@ -98,6 +100,10 @@
 
   function stopDomino(cards) {
     window.clearTimeout(dominoTimer);
+    if (mobileObserver) mobileObserver.disconnect();
+    mobileObserver = null;
+    mobileTimers.forEach(function (timer) { window.clearTimeout(timer); });
+    mobileTimers.clear();
     cards.forEach(function (card) { card.classList.remove("is-domino-active"); });
   }
 
@@ -105,14 +111,26 @@
     stopDomino(cards);
     dominoIndex = 0;
     if (window.matchMedia("(max-width: 699px)").matches) {
-      const replay = function () {
-        if (!screen.classList.contains("active")) return;
-        cards.forEach(function (card) { card.classList.remove("is-domino-active"); });
-        void screen.offsetWidth;
-        cards.forEach(function (card) { card.classList.add("is-domino-active"); });
-        dominoTimer = window.setTimeout(replay, 6000);
-      };
-      replay();
+      mobileObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          const card = entry.target;
+          window.clearTimeout(mobileTimers.get(card));
+          mobileTimers.delete(card);
+          if (!entry.isIntersecting || !screen.classList.contains("active")) {
+            card.classList.remove("is-domino-active");
+            return;
+          }
+          const replay = function () {
+            if (!screen.classList.contains("active")) return;
+            card.classList.remove("is-domino-active");
+            void card.offsetWidth;
+            card.classList.add("is-domino-active");
+            mobileTimers.set(card, window.setTimeout(replay, 6000));
+          };
+          replay();
+        });
+      }, { threshold: 0.25 });
+      cards.forEach(function (card) { mobileObserver.observe(card); });
       return;
     }
     const next = function () {
@@ -143,6 +161,11 @@
       visual.classList.add("sku-domino-motion");
     });
     updateClaims(cards);
+    let replayButton = screenReplayButton();
+    replayButton.onclick = function () {
+      document.documentElement.classList.add("sku-motion-opt-in");
+      playDomino(cards, grid.closest(".screen"));
+    };
     if(languageObserver) languageObserver.disconnect();
     languageObserver = new MutationObserver(function () { updateClaims(cards); });
     languageObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-language"] });
@@ -155,6 +178,19 @@
     screenObserver = new MutationObserver(sync);
     if (screen) screenObserver.observe(screen, { attributes: true, attributeFilter: ["class"] });
     sync();
+  }
+
+  function screenReplayButton() {
+    const heading = document.querySelector(".sku-feature .sku-heading");
+    let button = heading.querySelector(".sku-replay");
+    if (!button) {
+      button = document.createElement("button");
+      button.type = "button";
+      button.className = "sku-replay";
+      button.textContent = "Replay product animation ↻";
+      heading.after(button);
+    }
+    return button;
   }
 
   document.addEventListener("siore:select-routine", function(event) {
