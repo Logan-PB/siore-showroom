@@ -37,3 +37,19 @@
 @media(max-width:1000px){.featured-skus .sku-visual.sku-domino-motion{height:250px!important}.featured-skus .sku-tile strong{font-size:13px!important}.sku-texture-clean{left:-5%;right:-5%}.sku-texture-claim{left:4%;right:10%;bottom:8%;padding:8px}.sku-texture-claim b{font-size:12px}.sku-texture-claim span{font-size:9px}}
 @media(max-width:699px){.featured-skus .sku-visual.sku-domino-motion{height:215px!important}.sku-head-focus svg{transform:translateY(22%) scale(1.67)}.is-gel .sku-head-focus svg{transform:translateY(-17%) scale(1.7)}}
 @media(prefers-reduced-motion:reduce){.sku-full-product,.sku-head-focus,.sku-focus-cap,.sku-real-pump,.sku-texture-clean{animation:none!important}.sku-full-product{opacity:1!important}}
+
+/* Shared 21-second cycle: four reveals, then a three-second complete hold. */
+@keyframes dominoWhole{0%,18%{transform:translate(0,0) scale(1)}34%,100%{transform:translate(28%,-22%) scale(.5)}}
+@keyframes dominoTexture{0%,20%{opacity:0;clip-path:inset(0 100% 0 0);transform:none}34%{opacity:1;clip-path:inset(0 76% 0 0);transform:none}70%,100%{opacity:1;clip-path:inset(0);transform:none}}
+@keyframes dominoClaim{0%,65%{opacity:0;transform:translateY(12px) scale(.94)}75%,100%{opacity:1;transform:none}}
+.sku-texture-claim{left:3%;right:3%;bottom:3%;padding:13px 14px;border-radius:17px;background:#f6a58f;color:#351d19!important;border:1px solid #ffc5b4}
+.sku-texture-claim small{display:block;font-size:13px;font-weight:700;line-height:1.2;color:#71382d}
+.sku-texture-claim b{margin-top:5px;font-size:20px;line-height:1.12;color:#351d19;word-break:keep-all}
+.sku-texture-claim em{display:block;margin-top:5px;font-size:39px;font-style:normal;font-weight:900;letter-spacing:-.045em;line-height:1.05;color:#351d19;white-space:nowrap}
+.sku-texture-claim span{margin-top:7px;font-size:11px;line-height:1.3;color:#572d25}
+.is-domino-active .sku-texture-claim b{animation:claimBeat 4.5s both}
+.is-domino-active .sku-texture-claim em{animation:claimNumberBeat 4.5s both}
+@keyframes claimBeat{0%,73%{opacity:0;transform:translateY(7px)}81%,100%{opacity:1;transform:none}}
+@keyframes claimNumberBeat{0%,81%{opacity:0;transform:scale(.85)}90%{opacity:1;transform:scale(1.04)}95%,100%{opacity:1;transform:none}}
+@media(max-width:1000px){.sku-texture-claim{padding:10px;border-radius:13px}.sku-texture-claim small{font-size:11px}.sku-texture-claim b{font-size:17px}.sku-texture-claim em{font-size:31px}.sku-texture-claim span{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.sku-texture-claim,.sku-texture-claim>*{animation:none!important;opacity:1!important;transform:none!important}.sku-full-product{transform:translate(28%,-22%) scale(.5)!important}.sku-texture-clean{opacity:1!important;clip-path:none!important}}

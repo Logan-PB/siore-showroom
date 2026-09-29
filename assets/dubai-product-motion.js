@@ -3,13 +3,13 @@
   const picks = [0, 1, 2, 7];
   const claims = {
     ko: [
-      ["당김 없이 부드러운 세정", "미세먼지 세정 99.55% · 1회 사용"],
+      ["당김 없이 부드러운 세정", "메이크업 세정 91.59% · 1회 사용"],
       ["수분과 광채를 한 번에", "수분 +148.70% · 광채 +403.37% · 1회 사용"],
       ["탄력과 주름 집중 케어", "입가주름 −13.60% · 겉탄력 +6.97% · 4주"],
       ["열감은 낮추고, 피부는 편안하게", "즉각 보습 +76.04% · 수분손실 −15.42% · 1회 사용"]
     ],
     en: [
-      ["Gentle cleanse. No tightness.", "99.55% fine-dust cleansing · after 1 use"],
+      ["Gentle cleanse. No tightness.", "Makeup cleansing 91.59% · 1 use"],
       ["Hydration and glow, together.", "+148.70% hydration · +403.37% glow · after 1 use"],
       ["Firmness and wrinkle care.", "−13.60% mouth-area wrinkles · +6.97% firmness · 4 weeks"],
       ["Cool heat. Calm skin.", "+76.04% instant hydration · −15.42% water loss · after 1 use"]
@@ -60,7 +60,7 @@
     return `<div class="sku-domino-stage ${gel ? "is-gel" : "is-pump"}">
       <img class="sku-full-product" src="${safe(product.image)}" alt="${safe(product.name)}">
       <div class="sku-texture-clean" aria-hidden="true"><img src="${safe(product.textureImage)}" alt=""></div>
-      <div class="sku-texture-claim" data-claim-index="${order}"><b></b><span></span></div>
+      <div class="sku-texture-claim" data-claim-index="${order}"><small></small><b></b><em></em><span></span></div>
     </div>`;
   }
 
@@ -72,9 +72,13 @@
     cards.forEach(function (card, index) {
       const claim = card.querySelector(".sku-texture-claim");
       if (claim) {
+        const names = {ko:["클렌징밀크","버블토너","인텐시브 세럼","카밍 수딩젤"],en:["Cleansing Milk","Bubble Toner","Intensive Serum","Calming Soothing Gel"],zh:["洁面乳","泡沫爽肤水","密集精华","舒缓凝胶"],ja:["クレンジングミルク","バブルトナー","セラム","カーミングジェル"]};
+        const labels = {ko:["미세먼지 세정력","피부 광채 개선","입가주름 감소","즉각 피부 보습"],en:["Fine-dust cleansing","Skin radiance","Mouth-area wrinkles","Instant hydration"],zh:["微尘清洁率","肌肤光泽改善","嘴角纹减少","即时保湿"],ja:["微細ほこり洗浄率","肌のツヤ改善","口元のシワ減少","即時保湿"]};
+        claim.querySelector("small").textContent=(names[lang]||names.en)[index];
+        claim.querySelector("em").textContent=["99.55%","+403.37%","−13.60%","+76.04%"][index];
         const headline = claim.querySelector("b");
         const evidence = claim.querySelector("span");
-        if (headline.textContent !== list[index][0]) headline.textContent = list[index][0];
+        if (headline.textContent !== (labels[lang] || labels.en)[index]) headline.textContent = (labels[lang] || labels.en)[index];
         if (evidence.textContent !== list[index][1]) evidence.textContent = list[index][1];
       }
     });
@@ -89,13 +93,13 @@
     stopDomino(cards);
     dominoIndex = 0;
     const next = function () {
-      cards.forEach(function (card) { card.classList.remove("is-domino-active"); });
+      if (dominoIndex === 0) cards.forEach(function (card) { card.classList.remove("is-domino-active"); });
       if (!screen.classList.contains("active")) return;
       const card = cards[dominoIndex];
       void card.offsetWidth;
       card.classList.add("is-domino-active");
       dominoIndex = (dominoIndex + 1) % cards.length;
-      dominoTimer = window.setTimeout(next, 4500);
+      dominoTimer = window.setTimeout(next, dominoIndex === 0 ? 7500 : 4500);
     };
     next();
   }
