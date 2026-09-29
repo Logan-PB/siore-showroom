@@ -1,6 +1,7 @@
 (function () {
   const products = typeof skuProducts !== "undefined" && Array.isArray(skuProducts) ? skuProducts : [];
-  const picks = [0, 1, 2, 7];
+  let picks = [0, 1, 2, 7];
+  let screenObserver, languageObserver;
   const claims = {
     ko: [
       ["당김 없이 부드러운 세정", "메이크업 세정 91.59% · 1회 사용"],
@@ -69,8 +70,18 @@
     if (renderedClaimLanguage === lang) return;
     renderedClaimLanguage = lang;
     const list = claims[lang] || claims.en;
-    cards.forEach(function (card, index) {
+    cards.forEach(function (card, order) {
+      const index = [0,1,2,7].indexOf(picks[order]);
       const claim = card.querySelector(".sku-texture-claim");
+      if (claim && index < 0) {
+        const product = products[picks[order]];
+        const stat = product.stats[0];
+        claim.querySelector("small").textContent=product.short;
+        claim.querySelector("b").textContent=stat.label;
+        claim.querySelector("em").textContent=stat.value;
+        claim.querySelector("span").textContent=stat.condition;
+        return;
+      }
       if (claim) {
         const names = {ko:["클렌징밀크","버블토너","인텐시브 세럼","카밍 수딩젤"],en:["Cleansing Milk","Bubble Toner","Intensive Serum","Calming Soothing Gel"],zh:["洁面乳","泡沫爽肤水","密集精华","舒缓凝胶"],ja:["クレンジングミルク","バブルトナー","セラム","カーミングジェル"]};
         const labels = {ko:["미세먼지 세정력","피부 수분량 증가","피부 광채 개선","가온 피부 온도 감소"],en:["Fine-dust cleansing","Skin hydration","Skin radiance","Heated skin cooling"],zh:["微尘清洁率","肌肤水分增加","肌肤光泽改善","加热后皮肤降温"],ja:["微細ほこり洗浄率","肌の水分量増加","肌のツヤ改善","加温後の肌温度低下"]};
@@ -121,16 +132,30 @@
       visual.classList.add("sku-domino-motion");
     });
     updateClaims(cards);
-    new MutationObserver(function () { updateClaims(cards); }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-language"] });
+    if(languageObserver) languageObserver.disconnect();
+    languageObserver = new MutationObserver(function () { updateClaims(cards); });
+    languageObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-language"] });
     const screen = grid.closest(".screen");
     const sync = function () {
       if (screen && screen.classList.contains("active")) playDomino(cards, screen);
       else stopDomino(cards);
     };
-    if (screen) new MutationObserver(sync).observe(screen, { attributes: true, attributeFilter: ["class"] });
+    if(screenObserver) screenObserver.disconnect();
+    screenObserver = new MutationObserver(sync);
+    if (screen) screenObserver.observe(screen, { attributes: true, attributeFilter: ["class"] });
     sync();
   }
 
+  document.addEventListener("siore:select-routine", function(event) {
+    const grid=document.querySelector("#featured-skus");
+    stopDomino(Array.from(grid.querySelectorAll(".sku-tile")));
+    picks=event.detail.slice();
+    renderedClaimLanguage=null;
+    delete grid.dataset.dominoMounted;
+    grid.innerHTML=picks.map(id=>skuTile(products[id],false)).join("");
+    grid.style.setProperty("grid-template-columns",`repeat(${picks.length}, minmax(0,1fr))`,"important");
+    mount();
+  });
   const observer = new MutationObserver(mount);
   observer.observe(document.documentElement, { childList: true, subtree: true });
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", mount);
