@@ -104,6 +104,17 @@
   function playDomino(cards, screen) {
     stopDomino(cards);
     dominoIndex = 0;
+    if (window.matchMedia("(max-width: 699px)").matches) {
+      const replay = function () {
+        if (!screen.classList.contains("active")) return;
+        cards.forEach(function (card) { card.classList.remove("is-domino-active"); });
+        void screen.offsetWidth;
+        cards.forEach(function (card) { card.classList.add("is-domino-active"); });
+        dominoTimer = window.setTimeout(replay, 6000);
+      };
+      replay();
+      return;
+    }
     const next = function () {
       if (dominoIndex === 0) cards.forEach(function (card) { card.classList.remove("is-domino-active"); });
       if (!screen.classList.contains("active")) return;
@@ -153,7 +164,8 @@
     renderedClaimLanguage=null;
     delete grid.dataset.dominoMounted;
     grid.innerHTML=picks.map(id=>skuTile(products[id],false)).join("");
-    grid.style.setProperty("grid-template-columns",`repeat(${picks.length}, minmax(0,1fr))`,"important");
+    grid.style.removeProperty("grid-template-columns");
+    grid.style.setProperty("--featured-count", String(picks.length));
     mount();
   });
   const observer = new MutationObserver(mount);
