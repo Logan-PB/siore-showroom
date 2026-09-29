@@ -1,0 +1,32 @@
+#presentation .intro-impact .intro-hero.intro-unified {height:480px!important;}
+#presentation .intro-impact .intro-editorial {width:68%;padding:12px 0;}
+#presentation .intro-impact .intro-unified h1 {font-size:44px!important;line-height:1.16!important;white-space:normal;letter-spacing:-1px;}
+#presentation .intro-impact .intro-origin {font-size:18px;line-height:1.5;white-space:normal;}
+#presentation .intro-impact .intro-title-row {gap:22px;}
+#presentation .intro-impact .intro-title-row .eyebrow {font-size:12px;}
+#presentation .intro-impact .ingredient-heading {margin-top:28px;margin-bottom:18px;}
+#presentation .intro-impact .ingredient-heading b {font-size:20px;white-space:normal;}
+#presentation .intro-impact .ingredient-unified {display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;}
+#presentation .intro-impact .ingredient-unified svg {width:48px;height:48px;}
+#presentation .intro-impact .ingredient-unified b {font-size:16px;line-height:1.25;white-space:normal;}
+#presentation .intro-impact .ingredient-secondary {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 18px;margin-top:20px;padding-top:16px;}
+#presentation .intro-impact .ingredient-secondary b {font-size:16px!important;line-height:1.25;white-space:normal;}
+#presentation .intro-impact .ingredient-note {font-size:12px;margin-top:15px;}
+#presentation .intro-impact .intro-blended-model {width:34%;height:100%;}
+#presentation .intro-impact .intro-proof {margin-top:24px;min-height:122px;}
+#presentation .intro-impact .proof-metric>strong {font-size:46px;}
+#presentation .intro-impact .proof-metric>b {font-size:16px;}
+#presentation .intro-impact .proof-non>strong {font-size:25px;}
+#presentation .intro-impact .intro-note {font-size:12px;margin-top:12px;line-height:1.4;}
+@media(max-width:699px){
+ #presentation .intro-impact .intro-hero.intro-unified {height:auto!important;min-height:0;}
+ #presentation .intro-impact .intro-editorial {width:100%;padding:10px;}
+ #presentation .intro-impact .intro-unified h1 {font-size:30px!important;}
+ #presentation .intro-impact .intro-origin {font-size:15px;}
+ #presentation .intro-impact .intro-blended-model {display:none;}
+ #presentation .intro-impact .ingredient-unified {grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+ #presentation .intro-impact .ingredient-secondary {grid-template-columns:repeat(2,minmax(0,1fr));}
+ #presentation .intro-impact .ingredient-heading b {font-size:18px;}
+ #presentation .intro-impact .intro-proof {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));}
+ #presentation .intro-impact .proof-heading {grid-column:1/-1;}
+}
