@@ -53,3 +53,5 @@
 @keyframes claimNumberBeat{0%,81%{opacity:0;transform:scale(.85)}90%{opacity:1;transform:scale(1.04)}95%,100%{opacity:1;transform:none}}
 @media(max-width:1000px){.sku-texture-claim{padding:10px;border-radius:13px}.sku-texture-claim small{font-size:11px}.sku-texture-claim b{font-size:17px}.sku-texture-claim em{font-size:31px}.sku-texture-claim span{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.sku-texture-claim,.sku-texture-claim>*{animation:none!important;opacity:1!important;transform:none!important}.sku-full-product{transform:translate(28%,-22%) scale(.5)!important}.sku-texture-clean{opacity:1!important;clip-path:none!important}}
+
+.sku-texture-claim em{font-size:35px}@media(max-width:1000px){.sku-texture-claim em{font-size:28px}}

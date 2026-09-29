@@ -73,13 +73,14 @@
       const claim = card.querySelector(".sku-texture-claim");
       if (claim) {
         const names = {ko:["클렌징밀크","버블토너","인텐시브 세럼","카밍 수딩젤"],en:["Cleansing Milk","Bubble Toner","Intensive Serum","Calming Soothing Gel"],zh:["洁面乳","泡沫爽肤水","密集精华","舒缓凝胶"],ja:["クレンジングミルク","バブルトナー","セラム","カーミングジェル"]};
-        const labels = {ko:["미세먼지 세정력","피부 광채 개선","입가주름 감소","즉각 피부 보습"],en:["Fine-dust cleansing","Skin radiance","Mouth-area wrinkles","Instant hydration"],zh:["微尘清洁率","肌肤光泽改善","嘴角纹减少","即时保湿"],ja:["微細ほこり洗浄率","肌のツヤ改善","口元のシワ減少","即時保湿"]};
+        const labels = {ko:["미세먼지 세정력","피부 수분량 증가","피부 광채 개선","가온 피부 온도 감소"],en:["Fine-dust cleansing","Skin hydration","Skin radiance","Heated skin cooling"],zh:["微尘清洁率","肌肤水分增加","肌肤光泽改善","加热后皮肤降温"],ja:["微細ほこり洗浄率","肌の水分量増加","肌のツヤ改善","加温後の肌温度低下"]};
         claim.querySelector("small").textContent=(names[lang]||names.en)[index];
-        claim.querySelector("em").textContent=["99.55%","+403.37%","−13.60%","+76.04%"][index];
+        claim.querySelector("em").textContent=["99.55%","+148.70%","+564.64%","−10.041°C"][index];
         const headline = claim.querySelector("b");
         const evidence = claim.querySelector("span");
+        const notes = {ko:["메이크업 세정 91.59% · 1회 사용","1회 사용 직후 · 개인차 있음","세럼 + 리치크림 병행 · 1회 사용 직후","가온 후 대비 · 1회 사용 직후"],en:["Makeup cleansing 91.59% · 1 use","After 1 use · Results vary","Serum + Rich Cream · after 1 use","Vs. heated skin · after 1 use"],zh:["卸妆清洁 91.59% · 1次使用","使用1次后 · 效果因人而异","精华 + 滋养面霜 · 使用1次后","与加热后相比 · 使用1次后"],ja:["メイク洗浄 91.59% · 1回使用","1回使用直後 · 個人差あり","セラム＋リッチクリーム併用 · 1回使用後","加温後との比較 · 1回使用後"]};
         if (headline.textContent !== (labels[lang] || labels.en)[index]) headline.textContent = (labels[lang] || labels.en)[index];
-        if (evidence.textContent !== list[index][1]) evidence.textContent = list[index][1];
+        if (evidence.textContent !== (notes[lang] || notes.en)[index]) evidence.textContent = (notes[lang] || notes.en)[index];
       }
     });
   }
