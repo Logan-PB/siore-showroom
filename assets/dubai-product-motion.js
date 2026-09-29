@@ -29,6 +29,7 @@
   };
   let dominoTimer = 0;
   let dominoIndex = 0;
+  let renderedClaimLanguage = null;
 
   function safe(value) {
     return String(value || "").replace(/[&<>\"]/g, function (char) {
@@ -65,12 +66,16 @@
 
   function updateClaims(cards) {
     const lang = document.documentElement.dataset.language || new URLSearchParams(location.search).get("lang") || "en";
+    if (renderedClaimLanguage === lang) return;
+    renderedClaimLanguage = lang;
     const list = claims[lang] || claims.en;
     cards.forEach(function (card, index) {
       const claim = card.querySelector(".sku-texture-claim");
       if (claim) {
-        claim.querySelector("b").textContent = list[index][0];
-        claim.querySelector("span").textContent = list[index][1];
+        const headline = claim.querySelector("b");
+        const evidence = claim.querySelector("span");
+        if (headline.textContent !== list[index][0]) headline.textContent = list[index][0];
+        if (evidence.textContent !== list[index][1]) evidence.textContent = list[index][1];
       }
     });
   }
