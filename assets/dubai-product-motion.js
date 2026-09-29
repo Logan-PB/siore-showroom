@@ -61,7 +61,7 @@
     return `<div class="sku-domino-stage ${gel ? "is-gel" : "is-pump"}">
       <img class="sku-full-product" src="${safe(product.image)}" alt="${safe(product.name)}">
       <div class="sku-texture-clean" aria-hidden="true"><img src="${safe(product.textureImage)}" alt=""></div>
-      <div class="sku-texture-claim" data-claim-index="${order}"><small></small><b></b><em></em><span></span></div>
+      <div class="sku-texture-claim" data-claim-index="${order}"><div class="claim-copy"><small></small><b></b><em></em><span></span></div>${product.id===1?`<div class="claim-evidence"><div class="claim-bars"><i style="height:40.21%">100</i><i style="height:100%">248.70</i></div><label>Before → After<br>Index: Before = 100</label></div>`:`<div class="claim-evidence"><img src="${safe(product.clinicalImage)}" alt="${safe(product.clinicalCaption)}"><label>Before → After</label></div>`}</div>
     </div>`;
   }
 
