@@ -40,12 +40,13 @@
     document.getElementById('starter-page-review').disabled = !selected.size;
   }
 function routineEvidence(product, routineIndex){
- const index=product.id===5?1:product.id===8?3:product.id===6&&routineIndex===3?3:0;
- const stat=product.stats[index];
- if(!stat)return '';
- const timing=stat.condition.replace(' · 공식몰 인체적용시험','');
- return `<div class="routine-product-evidence"><span>${stat.label}</span><strong>${stat.value}</strong><small>${timing}</small></div>`;
+ const selections=[{1:[1,0],2:[1,0],8:[3]},{5:[1,0],6:[0],3:[0,2]},{1:[0],7:[0],8:[3]},{7:[0,2],6:[3],4:[2]}];
+ const indices=selections[routineIndex]?.[product.id]||[0];
+ const stats=indices.map(i=>product.stats[i]).filter(Boolean);
+ const photo=stats.some(s=>s.photoLinked&&!s.synergy)&&product.clinicalImage;
+ return `<div class="routine-product-evidence">${stats.map(stat=>`<div class="routine-evidence-metric"><span>${stat.label}</span><strong>${stat.value}</strong><small>${stat.condition.replace(' · 공식몰 인체적용시험','')}</small></div>`).join('')}${photo?`<figure class="routine-evidence-photo"><img src="${product.clinicalImage}" alt="${product.clinicalCaption}" loading="lazy"><figcaption>${product.clinicalCaption}</figcaption></figure>`:''}</div>`;
 }
+
   function productChoice(id, role, evidence=false) {
     const p = skuProducts[id];
     return `<article class="starter-product" data-product-line="${line(id)}"><label><input type="checkbox" data-select-sku="${id}" ${selected.has(id)?'checked':''}><span class="starter-check-label">SKU 선택</span><img src="${p.image}" alt=""><small>${p.line}</small><b>${SHORT[id]}</b><span>${role || p.category}</span></label>${evidence?routineEvidence(p,activeRoutine):''}<button class="starter-spec" data-spec="${id}">제품 스펙 ↗</button></article>`;

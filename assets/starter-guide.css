@@ -212,3 +212,16 @@ html[data-theme=light] .starter-plan,html[data-theme=light] #starter-guide{--sg-
 .routine-product-evidence small{font-size:10px;color:#59392d}
 .starter-advisor-products{margin-bottom:16px}
 @media(max-width:700px){.starter-advisor-heading,.heading{flex-wrap:wrap}.routine-heading-reason{flex-basis:100%;margin:6px 0 0}}
+
+/* Category-specific clinical evidence in transparent glass cards. */
+#starter-guide .routine-product-evidence,.routine-product-evidence{background:linear-gradient(135deg,#ffffff16,#ffffff05);border:1px solid #ffffff38;box-shadow:inset 0 1px 0 #ffffff24,0 5px 16px #0002;backdrop-filter:blur(12px);color:#f8eee8;gap:10px;padding:12px 9px}
+.routine-evidence-metric{display:flex;flex-direction:column;gap:5px;width:100%}
+.routine-evidence-metric+.routine-evidence-metric{border-top:1px solid #ffffff24;padding-top:10px}
+#starter-guide .routine-product-evidence strong,.routine-product-evidence strong{color:#ffd0b8;font-size:24px}
+#starter-guide .routine-product-evidence small,.routine-product-evidence small{color:#d8c6b9;font-size:10px}
+.routine-evidence-photo{margin:0;width:100%;border-top:1px solid #ffffff24;padding-top:8px}
+#starter-guide .routine-evidence-photo img,.routine-evidence-photo img{display:block;width:100%;height:auto;max-height:110px;object-fit:contain;margin:0;border-radius:6px;filter:none}
+.routine-evidence-photo figcaption{font-size:9px;line-height:1.4;color:#d8c6b9;margin-top:5px}
+html[data-theme=light] #starter-guide .routine-product-evidence{background:linear-gradient(135deg,#ffffffdd,#e9f1f588);border-color:#b2c4cc;color:#23333d}
+html[data-theme=light] #starter-guide .routine-product-evidence strong{color:#8d472d}
+html[data-theme=light] #starter-guide .routine-product-evidence small,html[data-theme=light] #starter-guide .routine-evidence-photo figcaption{color:#526571}
