@@ -202,3 +202,13 @@ html[data-theme=light] .starter-plan,html[data-theme=light] #starter-guide{--sg-
 .starter-advisor-evidence b{display:block;font-size:18px;margin:6px 0}
 .starter-advisor-evidence small{font-size:11px}
 @media(max-width:600px){.starter-advisor-products{grid-template-columns:1fr}.starter-advisor-heading{gap:10px}}
+
+.routine-heading-reason{margin-left:auto;flex:0 1 38%;padding-left:15px;border-left:2px solid #f2a58c;font-size:12px;line-height:1.6}
+.routine-heading-reason b{display:block;color:#f2a58c;font-size:12px}
+#starter-guide .routine-heading-reason p{font-size:11px;line-height:1.6;margin-top:4px}
+.routine-product-evidence{display:flex;flex-direction:column;gap:5px;margin:8px 10px 12px;padding:12px 8px;border-radius:10px;background:#f2ad96;color:#321d16;text-align:center;line-height:1.3;min-height:104px;justify-content:center}
+.routine-product-evidence span{font-size:12px;font-weight:800;word-break:keep-all}
+#starter-guide .routine-product-evidence strong,.routine-product-evidence strong{font-size:25px;letter-spacing:-.7px;color:#321d16}
+.routine-product-evidence small{font-size:10px;color:#59392d}
+.starter-advisor-products{margin-bottom:16px}
+@media(max-width:700px){.starter-advisor-heading,.heading{flex-wrap:wrap}.routine-heading-reason{flex-basis:100%;margin:6px 0 0}}

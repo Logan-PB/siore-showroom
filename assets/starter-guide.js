@@ -39,9 +39,16 @@
     document.getElementById('starter-page-lines').textContent = selected.size ? lineNames.map(([key,name])=>{const n=ids().filter(id=>line(id)===key).length;return n?`${name} ${n}종`:''}).filter(Boolean).join(' · ') : '추천 구성에서 선택하고 제품을 추가·변경할 수 있습니다.';
     document.getElementById('starter-page-review').disabled = !selected.size;
   }
-  function productChoice(id, role) {
+function routineEvidence(product, routineIndex){
+ const index=product.id===5?1:product.id===8?3:product.id===6&&routineIndex===3?3:0;
+ const stat=product.stats[index];
+ if(!stat)return '';
+ const timing=stat.condition.replace(' · 공식몰 인체적용시험','');
+ return `<div class="routine-product-evidence"><span>${stat.label}</span><strong>${stat.value}</strong><small>${timing}</small></div>`;
+}
+  function productChoice(id, role, evidence=false) {
     const p = skuProducts[id];
-    return `<article class="starter-product" data-product-line="${line(id)}"><label><input type="checkbox" data-select-sku="${id}" ${selected.has(id)?'checked':''}><span class="starter-check-label">SKU 선택</span><img src="${p.image}" alt=""><small>${p.line}</small><b>${SHORT[id]}</b><span>${role || p.category}</span></label><button class="starter-spec" data-spec="${id}">제품 스펙 ↗</button></article>`;
+    return `<article class="starter-product" data-product-line="${line(id)}"><label><input type="checkbox" data-select-sku="${id}" ${selected.has(id)?'checked':''}><span class="starter-check-label">SKU 선택</span><img src="${p.image}" alt=""><small>${p.line}</small><b>${SHORT[id]}</b><span>${role || p.category}</span></label>${evidence?routineEvidence(p,activeRoutine):''}<button class="starter-spec" data-spec="${id}">제품 스펙 ↗</button></article>`;
   }
   function corePanel() {
     return `<div class="starter-panel-heading"><div><span class="starter-route-letter">A</span><h3>핵심 6종으로 시작</h3></div><p>클렌징부터 수분·탄력·쿨링 케어까지, 고객에게 맞는 보습 제품을 함께 제안합니다.</p></div><div class="starter-core-products">${CORE.map((id,i)=>productChoice(id,CORE_ROLES[i])).join('')}</div><div class="starter-reason"><b>고객에 따라 달라지는 크림 제안</b><p>리치크림은 농밀한 보습, 컴포트크림은 산뜻한 마무리. 두 크림은 피부 상태와 제형 선호에 맞춰 제안하는 선택지입니다.</p></div><button class="starter-add-group" data-add-core>핵심 6종 모두 담기 ＋</button>`;
@@ -49,7 +56,7 @@
   let activeRoutine = 0;
   function needsPanel() {
     const r=needsRoutines[activeRoutine];
-    return `<div class="starter-advisor-tabs" role="group" aria-label="피부 고민 선택">${needsRoutines.map((item,i)=>`<button data-routine-tab="${i}" aria-pressed="${i===activeRoutine}">${item.title}</button>`).join('')}</div><section class="starter-routine starter-advisor"><div class="starter-advisor-heading"><strong>Rx</strong><div><small>${r.tag}</small><h3>${r.hook}</h3></div></div><div class="starter-advisor-products">${r.ids.map((id,i)=>productChoice(id,`${i+1}. ${r.steps[i]}`)).join('')}</div><div class="starter-reason"><b>왜 이 조합인가요?</b><p>${r.reason}</p></div><div class="starter-advisor-evidence"><small>제품별 시험 근거</small><b>${r.stat}</b><small>${r.note}</small></div><button class="starter-add-group" data-add-routine="${activeRoutine}">이 구성 담기 ＋</button></section>`;
+    return `<div class="starter-advisor-tabs" role="group" aria-label="피부 고민 선택">${needsRoutines.map((item,i)=>`<button data-routine-tab="${i}" aria-pressed="${i===activeRoutine}">${item.title}</button>`).join('')}</div><section class="starter-routine starter-advisor"><div class="starter-advisor-heading"><strong>Rx</strong><div><small>${r.tag}</small><h3>${r.hook}</h3></div><div class="routine-heading-reason"><b>왜 이 조합인가요?</b><p>${r.reason}</p></div></div><div class="starter-advisor-products">${r.ids.map((id,i)=>productChoice(id,`${i+1}. ${r.steps[i]}`,true)).join('')}</div><button class="starter-add-group" data-add-routine="${activeRoutine}">이 구성 담기 ＋</button></section>`;
   }
   function picker() {
     return `<div class="starter-picker"><button class="starter-picker-toggle" aria-expanded="${pickerOpen}">전체 10종에서 추가·변경 <span>${pickerOpen?'−':'＋'}</span></button><div class="starter-picker-grid" ${pickerOpen?'':'hidden'}>${skuProducts.map(p=>`<label data-product-line="${line(p.id)}"><input type="checkbox" data-select-sku="${p.id}" ${selected.has(p.id)?'checked':''}><img src="${p.image}" alt=""><span>${SHORT[p.id]}</span></label>`).join('')}</div></div>`;
