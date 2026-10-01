@@ -47,7 +47,7 @@
     return `<div class="starter-panel-heading"><div><span class="starter-route-letter">A</span><h3>핵심 4종으로 시작</h3></div><p>토너·세럼으로 상담을 시작하고, 고객에게 맞는 크림을 제안합니다.</p></div><div class="starter-core-products">${CORE.map((id,i)=>productChoice(id,CORE_ROLES[i])).join('')}</div><div class="starter-reason"><b>고객에 따라 달라지는 크림 제안</b><p>리치크림은 농밀한 보습, 컴포트크림은 산뜻한 마무리. 두 크림은 피부 상태와 제형 선호에 맞춰 제안하는 선택지입니다.</p></div><button class="starter-add-group" data-add-core>핵심 4종 모두 담기 ＋</button>`;
   }
   function needsPanel() {
-    return `<div class="starter-panel-heading"><div><span class="starter-route-letter">B</span><h3>주요 고객의 피부 고민으로 선택</h3></div><p>상담에서 함께 권할 이유가 있는 3종 구성입니다. 여러 니즈를 함께 선택할 수 있습니다.</p></div><div class="starter-routines">${needsRoutines.map((r,i)=>`<article class="starter-routine" style="--routine-tone:${r.tone}"><div class="starter-routine-title"><span aria-hidden="true">${r.emoji}</span><div><h4>${r.title}</h4><small>${r.tag}</small></div></div><div class="starter-routine-products">${r.ids.map((id,n)=>`<button data-spec="${id}" data-product-line="${line(id)}" aria-label="${skuProducts[id].name} 제품 스펙"><img src="${skuProducts[id].image}" alt=""><b>${SHORT[id]}</b><span>${n+1}. ${r.steps[n]}</span></button>`).join('')}</div><p class="starter-routine-reason">${r.reason}</p><div class="starter-routine-bottom"><span>고객 제안용 3종 소비자가 합계<strong>${r.ids.reduce((sum,id)=>sum+priceCatalog[id][2],0).toLocaleString('ko-KR')}원</strong></span><button data-add-routine="${i}">이 구성 담기 ＋</button></div></article>`).join('')}</div><p class="starter-care-note">소비자가 합계는 개별 제품 가격을 합산한 상담 예시입니다. 시술 후에는 시술기관의 사용 시점·주의사항을 따릅니다.</p>`;
+    return `<iframe title="피부 고민별 3종 상담 구성" src="advisor.html?v=advisor20" style="display:block;width:100%;height:680px;border:0;border-radius:12px"></iframe>`;
   }
   function picker() {
     return `<div class="starter-picker"><button class="starter-picker-toggle" aria-expanded="${pickerOpen}">전체 10종에서 추가·변경 <span>${pickerOpen?'−':'＋'}</span></button><div class="starter-picker-grid" ${pickerOpen?'':'hidden'}>${skuProducts.map(p=>`<label data-product-line="${line(p.id)}"><input type="checkbox" data-select-sku="${p.id}" ${selected.has(p.id)?'checked':''}><img src="${p.image}" alt=""><span>${SHORT[p.id]}</span></label>`).join('')}</div></div>`;
@@ -106,5 +106,14 @@
   document.addEventListener('keydown',event=>{
     if(dialog.open&&event.key.startsWith('Arrow')&&!document.querySelector('#sku-dialog[open],#clinical-viewer[open],#price-dialog[open]'))event.stopImmediatePropagation();
   },true);
+  window.addAdvisorRoutine = index => {
+    const routine = needsRoutines[index];
+    if (!routine) return;
+    routine.ids.forEach(id => selected.add(id));
+    confirmed = false; save();
+    const needs = document.getElementById('needs-dialog');
+    if(needs && needs.open) needs.close();
+    openStarterGuide('needs',true);
+  };
   updatePageSummary();
 })();
