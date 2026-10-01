@@ -189,3 +189,16 @@ html[data-theme=light] .starter-plan,html[data-theme=light] #starter-guide{--sg-
  .starter-review-line b{font-size:13px}
  .starter-next{padding:21px}
 }
+
+/* Render routine selection directly, without a nested document. */
+.starter-advisor-tabs{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:15px}
+#starter-guide .starter-advisor-tabs button{padding:10px 12px;font-size:13px;font-weight:800}
+#starter-guide .starter-advisor-tabs button[aria-pressed=true]{background:#f2a58c!important;color:#2b1811!important;border-color:#f2a58c!important}
+.starter-advisor-heading{display:flex;align-items:center;gap:16px;margin:14px 0}
+.starter-advisor-heading>strong{font:bold 48px/1 Arial;color:#f2a58c}
+.starter-advisor-heading small{font-size:12px;color:var(--sg-muted)}
+.starter-advisor-products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.starter-advisor-evidence{background:#f1ad95;color:#321d16;border-radius:10px;padding:14px;margin-bottom:14px}
+.starter-advisor-evidence b{display:block;font-size:18px;margin:6px 0}
+.starter-advisor-evidence small{font-size:11px}
+@media(max-width:600px){.starter-advisor-products{grid-template-columns:1fr}.starter-advisor-heading{gap:10px}}
