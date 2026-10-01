@@ -1,0 +1,2 @@
+/* Keep the serum frame crop above page-specific image sizing rules. */
+#presentation .regional-gallery .song-feature .song-post-photo img{position:absolute!important;width:332.895%!important;height:104.706%!important;max-width:none!important;max-height:none!important;left:-114.474%!important;top:-2.353%!important;margin:0!important;object-fit:fill!important;border-radius:0!important}
