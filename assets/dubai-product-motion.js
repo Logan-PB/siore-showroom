@@ -30,6 +30,8 @@
   };
   let dominoTimer = 0;
   let dominoIndex = 0;
+  let mobileObserver;
+  const mobileTimers = new Map();
   let renderedClaimLanguage = null;
 
   function safe(value) {
@@ -98,12 +100,39 @@
 
   function stopDomino(cards) {
     window.clearTimeout(dominoTimer);
+    if (mobileObserver) mobileObserver.disconnect();
+    mobileObserver = null;
+    mobileTimers.forEach(function (timer) { window.clearTimeout(timer); });
+    mobileTimers.clear();
     cards.forEach(function (card) { card.classList.remove("is-domino-active"); });
   }
 
   function playDomino(cards, screen) {
     stopDomino(cards);
     dominoIndex = 0;
+    if (window.matchMedia("(max-width: 699px)").matches) {
+      mobileObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          const card = entry.target;
+          window.clearTimeout(mobileTimers.get(card));
+          mobileTimers.delete(card);
+          if (!entry.isIntersecting || !screen.classList.contains("active")) {
+            card.classList.remove("is-domino-active");
+            return;
+          }
+          const replay = function () {
+            if (!screen.classList.contains("active")) return;
+            card.classList.remove("is-domino-active");
+            void card.offsetWidth;
+            card.classList.add("is-domino-active");
+            mobileTimers.set(card, window.setTimeout(replay, 6000));
+          };
+          replay();
+        });
+      }, { threshold: 0.25 });
+      cards.forEach(function (card) { mobileObserver.observe(card); });
+      return;
+    }
     const next = function () {
       if (dominoIndex === 0) cards.forEach(function (card) { card.classList.remove("is-domino-active"); });
       if (!screen.classList.contains("active")) return;
@@ -132,6 +161,11 @@
       visual.classList.add("sku-domino-motion");
     });
     updateClaims(cards);
+    let replayButton = screenReplayButton();
+    replayButton.onclick = function () {
+      document.documentElement.classList.add("sku-motion-opt-in");
+      playDomino(cards, grid.closest(".screen"));
+    };
     if(languageObserver) languageObserver.disconnect();
     languageObserver = new MutationObserver(function () { updateClaims(cards); });
     languageObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-language"] });
@@ -146,6 +180,19 @@
     sync();
   }
 
+  function screenReplayButton() {
+    const heading = document.querySelector(".sku-feature .sku-heading");
+    let button = heading.querySelector(".sku-replay");
+    if (!button) {
+      button = document.createElement("button");
+      button.type = "button";
+      button.className = "sku-replay";
+      button.textContent = "Replay product animation ↻";
+      heading.after(button);
+    }
+    return button;
+  }
+
   document.addEventListener("siore:select-routine", function(event) {
     const grid=document.querySelector("#featured-skus");
     stopDomino(Array.from(grid.querySelectorAll(".sku-tile")));
@@ -153,7 +200,8 @@
     renderedClaimLanguage=null;
     delete grid.dataset.dominoMounted;
     grid.innerHTML=picks.map(id=>skuTile(products[id],false)).join("");
-    grid.style.setProperty("grid-template-columns",`repeat(${picks.length}, minmax(0,1fr))`,"important");
+    grid.style.removeProperty("grid-template-columns");
+    grid.style.setProperty("--featured-count", String(picks.length));
     mount();
   });
   const observer = new MutationObserver(mount);

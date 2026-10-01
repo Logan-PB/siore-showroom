@@ -36,7 +36,7 @@
 @keyframes dominoClaim { 0%,67%{opacity:0;transform:translateY(12px) scale(.92)} 76%,88%{opacity:1;transform:translateY(0) scale(1)} 96%,100%{opacity:0;transform:translateY(-4px) scale(.98)} }
 @media(max-width:1000px){.featured-skus .sku-visual.sku-domino-motion{height:250px!important}.featured-skus .sku-tile strong{font-size:13px!important}.sku-texture-clean{left:-5%;right:-5%}.sku-texture-claim{left:4%;right:10%;bottom:8%;padding:8px}.sku-texture-claim b{font-size:12px}.sku-texture-claim span{font-size:9px}}
 @media(max-width:699px){.featured-skus .sku-visual.sku-domino-motion{height:215px!important}.sku-head-focus svg{transform:translateY(22%) scale(1.67)}.is-gel .sku-head-focus svg{transform:translateY(-17%) scale(1.7)}}
-@media(prefers-reduced-motion:reduce){.sku-full-product,.sku-head-focus,.sku-focus-cap,.sku-real-pump,.sku-texture-clean{animation:none!important}.sku-full-product{opacity:1!important}}
+@media(prefers-reduced-motion:reduce){html:not(.sku-motion-opt-in) :is(.sku-full-product,.sku-head-focus,.sku-focus-cap,.sku-real-pump,.sku-texture-clean){animation:none!important}html:not(.sku-motion-opt-in) .sku-full-product{opacity:1!important}}
 
 /* Shared 21-second cycle: four reveals, then a three-second complete hold. */
 @keyframes dominoWhole{0%,18%{transform:translate(0,0) scale(1)}34%,100%{transform:translate(28%,-22%) scale(.5)}}
@@ -52,7 +52,7 @@
 @keyframes claimBeat{0%,73%{opacity:0;transform:translateY(7px)}81%,100%{opacity:1;transform:none}}
 @keyframes claimNumberBeat{0%,81%{opacity:0;transform:scale(.85)}90%{opacity:1;transform:scale(1.04)}95%,100%{opacity:1;transform:none}}
 @media(max-width:1000px){.sku-texture-claim{padding:10px;border-radius:13px}.sku-texture-claim small{font-size:11px}.sku-texture-claim b{font-size:17px}.sku-texture-claim em{font-size:31px}.sku-texture-claim span{font-size:10px}}
-@media(prefers-reduced-motion:reduce){.sku-texture-claim,.sku-texture-claim>*{animation:none!important;opacity:1!important;transform:none!important}.sku-full-product{transform:translate(28%,-22%) scale(.5)!important}.sku-texture-clean{opacity:1!important;clip-path:none!important}}
+@media(prefers-reduced-motion:reduce){html:not(.sku-motion-opt-in) :is(.sku-texture-claim,.sku-texture-claim>*){animation:none!important;opacity:1!important;transform:none!important}html:not(.sku-motion-opt-in) .sku-full-product{transform:translate(28%,-22%) scale(.5)!important}html:not(.sku-motion-opt-in) .sku-texture-clean{opacity:1!important;clip-path:none!important}}
 
 .sku-texture-claim em{font-size:35px}@media(max-width:1000px){.sku-texture-claim em{font-size:28px}}
 
