@@ -11,7 +11,7 @@ html[data-theme=light] .starter-plan,html[data-theme=light] #starter-guide{--sg-
 .starter-entry-title b{display:block;font-size:18px;white-space:nowrap;letter-spacing:-.4px}
 .starter-entry-title small{display:block;font-size:10px;color:var(--sg-muted)!important;margin-top:4px;white-space:nowrap}
 .starter-entry-title>em{margin-left:auto;align-self:start;font-style:normal;font-size:10px;color:var(--sg-accent)!important;white-space:nowrap}
-.starter-mini-products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;margin:19px 0 15px}
+.starter-mini-products{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:3px;margin:19px 0 15px}
 .starter-mini img{height:85px;max-width:100%;width:100%;object-fit:contain;display:block}
 .starter-mini b{display:block;font-size:10px;text-align:center;color:var(--line-accent)!important;margin-top:9px;white-space:nowrap;letter-spacing:-.4px}
 .starter-entry-copy{display:block;font-size:10px;line-height:1.6;color:var(--sg-muted)!important;border-top:1px solid var(--sg-rule)!important;padding-top:12px;white-space:nowrap;letter-spacing:-.15px}
@@ -51,7 +51,7 @@ html[data-theme=light] .starter-plan,html[data-theme=light] #starter-guide{--sg-
 .starter-route-letter{font-size:15px;color:var(--sg-accent)!important;font-weight:700}
 #starter-guide .starter-panel-heading h3{font-size:21px;white-space:nowrap}
 #starter-guide .starter-panel-heading p{font-size:11px;line-height:1.6;color:var(--sg-muted)!important;margin-top:7px}
-.starter-core-products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.starter-core-products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .starter-product{border:1px solid var(--sg-rule)!important;border-top:3px solid var(--line-accent)!important;border-radius:9px!important;background:var(--sg-card)!important;min-width:0;overflow:hidden}
 .starter-product label{position:relative;display:flex;flex-direction:column;align-items:center;padding:13px 10px 12px;cursor:pointer;min-height:0;background:transparent!important;line-height:1.35}
 .starter-product label.is-picked{background:var(--line-soft)!important}

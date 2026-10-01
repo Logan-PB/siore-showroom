@@ -1,7 +1,7 @@
 /* SKU selection is a planning aid. Actual quantities and orders stay in B2B. */
 (() => {
-  const CORE = [1, 2, 4, 8];
-  const CORE_ROLES = ['수분·광채의 시작', '탄력 집중 케어', '농밀한 보습 마무리', '산뜻한 보습 마무리'];
+  const CORE = [0, 1, 2, 7, 4, 8];
+  const CORE_ROLES = ['세안부터 시작', '수분·광채의 시작', '탄력 집중 케어', '쿨링·수분 케어', '농밀한 보습 마무리', '산뜻한 보습 마무리'];
   const SHORT = {0:'클렌징밀크',1:'버블토너',2:'인텐시브 세럼',3:'수딩크림',4:'리치크림',5:'에센스토너',6:'리페어 앰플',7:'카밍 수딩젤',8:'컴포트크림',9:'마시는 PDRN'};
   const STORAGE = 'siore-first-sku-plan-v1';
   let selected = new Set(), confirmed = false, mode = 'core', reviewing = false, pickerOpen = false;
@@ -19,7 +19,7 @@
   const miniProduct = id => `<span class="starter-mini" data-product-line="${line(id)}"><img src="${skuProducts[id].image}" alt=""><b>${SHORT[id]}</b></span>`;
   const plan = document.querySelector('.closing-plan');
   plan.classList.add('starter-plan');
-  plan.innerHTML = `<div class="starter-plan-heading"><span class="eyebrow">FIRST ORDER · SKU SELECTION</span><h3>어떤 구성으로 시작할까요?</h3></div><div class="starter-entry-options"><button class="starter-entry" data-starter-mode="core"><span class="starter-entry-title"><i>A</i><span><b>핵심 4종 구성</b><small>주력 SKU로 시작하는 약국</small></span><em>구성 보기 ↗</em></span><span class="starter-mini-products">${CORE.map(miniProduct).join('')}</span><span class="starter-entry-copy">토너·세럼 + 피부에 맞춰 제안하는 크림 2종</span></button><button class="starter-entry" data-starter-mode="needs"><span class="starter-entry-title"><i>B</i><span><b>니즈별 3종 구성</b><small>우리 약국의 주요 고객에 맞춰</small></span><em>비교하기 ↗</em></span><span class="starter-need-chips">${needsRoutines.map(r=>`<span><i aria-hidden="true">${r.emoji}</i>${r.title}</span>`).join('')}</span><span class="starter-entry-copy">네 가지 상담 루틴 중 선택 · 여러 구성 조합 가능</span></button></div><div class="starter-saved"><div><strong id="starter-page-count">첫 사입 SKU를 골라보세요.</strong><span id="starter-page-lines">추천 구성에서 선택하고 제품을 추가·변경할 수 있습니다.</span></div><button id="starter-page-review">선정 목록 보기 ↗</button></div><div class="starter-order-path"><span><b>01</b>SKU 선정</span><i>→</i><span><b>02</b>가입·거래 조건 확인</span><i>→</i><span><b>03</b>첫 주문·진열</span></div><div class="closing-tools"><button onclick="openPrices()">SKU 공급단가표 ↗</button><a href="https://logan-pb.github.io/siore-skin/guides/siore_guide_12.html" target="_blank" rel="noopener">거래 안내·서류 제출 ↗</a></div>`;
+  plan.innerHTML = `<div class="starter-plan-heading"><span class="eyebrow">FIRST ORDER · SKU SELECTION</span><h3>어떤 구성으로 시작할까요?</h3></div><div class="starter-entry-options"><button class="starter-entry" data-starter-mode="core"><span class="starter-entry-title"><i>A</i><span><b>핵심 6종 구성</b><small>주력 SKU로 시작하는 약국</small></span><em>구성 보기 ↗</em></span><span class="starter-mini-products">${CORE.map(miniProduct).join('')}</span><span class="starter-entry-copy">클렌징·토너·세럼·수딩젤 + 크림 2종</span></button><button class="starter-entry" data-starter-mode="needs"><span class="starter-entry-title"><i>B</i><span><b>니즈별 3종 구성</b><small>우리 약국의 주요 고객에 맞춰</small></span><em>비교하기 ↗</em></span><span class="starter-need-chips">${needsRoutines.map(r=>`<span><i aria-hidden="true">${r.emoji}</i>${r.title}</span>`).join('')}</span><span class="starter-entry-copy">네 가지 상담 루틴 중 선택 · 여러 구성 조합 가능</span></button></div><div class="starter-saved"><div><strong id="starter-page-count">첫 사입 SKU를 골라보세요.</strong><span id="starter-page-lines">추천 구성에서 선택하고 제품을 추가·변경할 수 있습니다.</span></div><button id="starter-page-review">선정 목록 보기 ↗</button></div><div class="starter-order-path"><span><b>01</b>SKU 선정</span><i>→</i><span><b>02</b>가입·거래 조건 확인</span><i>→</i><span><b>03</b>첫 주문·진열</span></div><div class="closing-tools"><button onclick="openPrices()">SKU 공급단가표 ↗</button><a href="https://logan-pb.github.io/siore-skin/guides/siore_guide_12.html" target="_blank" rel="noopener">거래 안내·서류 제출 ↗</a></div>`;
   document.querySelector('.closing-heading>p:last-child').textContent = '제품 구성부터 정하고, 우리 약국의 첫 주문을 준비하세요.';
   document.querySelector('.closing-enroll .eyebrow').textContent = 'NEXT STEP · PARTNERSHIP';
   document.querySelector('.closing-enroll h3').textContent = '시오레 입점, 여기서 시작하세요';
@@ -44,7 +44,7 @@
     return `<article class="starter-product" data-product-line="${line(id)}"><label><input type="checkbox" data-select-sku="${id}" ${selected.has(id)?'checked':''}><span class="starter-check-label">SKU 선택</span><img src="${p.image}" alt=""><small>${p.line}</small><b>${SHORT[id]}</b><span>${role || p.category}</span></label><button class="starter-spec" data-spec="${id}">제품 스펙 ↗</button></article>`;
   }
   function corePanel() {
-    return `<div class="starter-panel-heading"><div><span class="starter-route-letter">A</span><h3>핵심 4종으로 시작</h3></div><p>토너·세럼으로 상담을 시작하고, 고객에게 맞는 크림을 제안합니다.</p></div><div class="starter-core-products">${CORE.map((id,i)=>productChoice(id,CORE_ROLES[i])).join('')}</div><div class="starter-reason"><b>고객에 따라 달라지는 크림 제안</b><p>리치크림은 농밀한 보습, 컴포트크림은 산뜻한 마무리. 두 크림은 피부 상태와 제형 선호에 맞춰 제안하는 선택지입니다.</p></div><button class="starter-add-group" data-add-core>핵심 4종 모두 담기 ＋</button>`;
+    return `<div class="starter-panel-heading"><div><span class="starter-route-letter">A</span><h3>핵심 6종으로 시작</h3></div><p>클렌징부터 수분·탄력·쿨링 케어까지, 고객에게 맞는 보습 제품을 함께 제안합니다.</p></div><div class="starter-core-products">${CORE.map((id,i)=>productChoice(id,CORE_ROLES[i])).join('')}</div><div class="starter-reason"><b>고객에 따라 달라지는 크림 제안</b><p>리치크림은 농밀한 보습, 컴포트크림은 산뜻한 마무리. 두 크림은 피부 상태와 제형 선호에 맞춰 제안하는 선택지입니다.</p></div><button class="starter-add-group" data-add-core>핵심 6종 모두 담기 ＋</button>`;
   }
   let activeRoutine = 0;
   function needsPanel() {
@@ -55,19 +55,19 @@
     return `<div class="starter-picker"><button class="starter-picker-toggle" aria-expanded="${pickerOpen}">전체 10종에서 추가·변경 <span>${pickerOpen?'−':'＋'}</span></button><div class="starter-picker-grid" ${pickerOpen?'':'hidden'}>${skuProducts.map(p=>`<label data-product-line="${line(p.id)}"><input type="checkbox" data-select-sku="${p.id}" ${selected.has(p.id)?'checked':''}><img src="${p.image}" alt=""><span>${SHORT[p.id]}</span></label>`).join('')}</div></div>`;
   }
   function summaryRows() {
-    if (!selected.size) return `<div class="starter-empty"><span>＋</span><b>우리 약국에 맞는 구성을 담아주세요.</b><p>핵심 4종이나 니즈별 구성을 선택하면<br>선정 목록이 이곳에 정리됩니다.</p></div>`;
+    if (!selected.size) return `<div class="starter-empty"><span>＋</span><b>우리 약국에 맞는 구성을 담아주세요.</b><p>핵심 6종이나 니즈별 구성을 선택하면<br>선정 목록이 이곳에 정리됩니다.</p></div>`;
     return lineNames.map(([key,name])=>{const products=ids().filter(id=>line(id)===key);return !products.length?'':`<section class="starter-selected-line" data-product-line="${key}"><h4>${name}<span>${products.length}종</span></h4>${products.map(id=>`<div class="starter-selected-item"><img src="${skuProducts[id].image}" alt=""><span>${SHORT[id]}</span><button data-remove-sku="${id}" aria-label="${SHORT[id]} 선정 목록에서 제외">×</button></div>`).join('')}</section>`}).join('');
   }
   function render() {
     if (reviewing) return renderReview();
     document.getElementById('starter-title').textContent = '우리 약국의 첫 SKU 구성';
-    content.innerHTML = `<div class="starter-mode-tabs" role="group" aria-label="SKU 구성 방식"><button data-mode="core" aria-pressed="${mode==='core'}">A · 핵심 4종 구성</button><button data-mode="needs" aria-pressed="${mode==='needs'}">B · 니즈별 3종 구성</button></div><div class="starter-workspace"><section class="starter-options">${mode==='core'?corePanel():needsPanel()}${picker()}</section><aside class="starter-summary"><div class="starter-summary-title"><div><small>MY PHARMACY SELECTION</small><h3>선정 SKU <strong id="starter-count">${selected.size}</strong><span>종</span></h3></div><button data-reset>다시 선택</button></div><p class="starter-merge-note">여러 구성에 겹치는 제품은 한 번만 담습니다.</p><div id="starter-selected-list" aria-live="polite">${summaryRows()}</div><div class="starter-summary-actions"><button data-confirm ${selected.size?'':'disabled'}>이 SKU로 구성 확정 →</button><span>수량은 구성 확정 후 거래 조건과 함께 정합니다.</span></div></aside></div>`;
+    content.innerHTML = `<div class="starter-mode-tabs" role="group" aria-label="SKU 구성 방식"><button data-mode="core" aria-pressed="${mode==='core'}">A · 핵심 6종 구성</button><button data-mode="needs" aria-pressed="${mode==='needs'}">B · 니즈별 3종 구성</button></div><div class="starter-workspace"><section class="starter-options">${mode==='core'?corePanel():needsPanel()}${picker()}</section><aside class="starter-summary"><div class="starter-summary-title"><div><small>MY PHARMACY SELECTION</small><h3>선정 SKU <strong id="starter-count">${selected.size}</strong><span>종</span></h3></div><button data-reset>다시 선택</button></div><p class="starter-merge-note">여러 구성에 겹치는 제품은 한 번만 담습니다.</p><div id="starter-selected-list" aria-live="polite">${summaryRows()}</div><div class="starter-summary-actions"><button data-confirm ${selected.size?'':'disabled'}>이 SKU로 구성 확정 →</button><span>수량은 구성 확정 후 거래 조건과 함께 정합니다.</span></div></aside></div>`;
     bind();syncSelection();
   }
   function syncSelection() {
     content.querySelectorAll('[data-select-sku]').forEach(input=>{input.checked=selected.has(Number(input.dataset.selectSku));input.closest('label').classList.toggle('is-picked',input.checked)});
     const coreButton=content.querySelector('[data-add-core]');
-    if (coreButton) {coreButton.disabled=fullSelection(CORE);coreButton.textContent=coreButton.disabled?'핵심 4종 선택됨 ✓':'핵심 4종 모두 담기 ＋'}
+    if (coreButton) {coreButton.disabled=fullSelection(CORE);coreButton.textContent=coreButton.disabled?'핵심 6종 선택됨 ✓':'핵심 6종 모두 담기 ＋'}
     content.querySelectorAll('[data-add-routine]').forEach(button=>{const included=fullSelection(needsRoutines[Number(button.dataset.addRoutine)].ids);button.disabled=included;button.textContent=included?'3종 포함됨 ✓':'이 구성 담기 ＋';button.closest('.starter-routine').classList.toggle('is-included',included)});
     const count=content.querySelector('#starter-count');if(count)count.textContent=selected.size;
     const list=content.querySelector('#starter-selected-list');if(list)list.innerHTML=summaryRows();
