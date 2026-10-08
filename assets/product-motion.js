@@ -6,6 +6,7 @@
   const configs = [
     { id: 0, kind: 'milk', label: '보호캡을 벗기고 펌프에서 밀크가 나오는 모습', split: 174, nozzle: [258, 142] },
     { id: 1, kind: 'foam', label: '보호캡을 벗기고 펌프에서 거품이 나오는 모습', split: 305, nozzle: [239, 133] },
+    { id: 2, kind: 'serum', label: '제품 뒤로 세럼 제형이 펼쳐지는 모습' },
     { id: 7, kind: 'gel', label: '아래 뚜껑을 열고 젤을 짜내는 모습' },
     { id: 9, kind: 'liquid', label: '스틱 포의 상단을 찢고 액상이 나오는 모습' }
   ];
@@ -95,6 +96,8 @@
     if (config.kind === 'milk' || config.kind === 'foam') {
       visual.querySelector('.sku-product').remove();
       visual.insertAdjacentHTML('afterbegin', pump(product, config));
+    } else if (config.kind === 'serum') {
+      visual.insertAdjacentHTML('afterbegin', `<img class="serum-texture-reveal" src="${product.textureImage}" alt="인텐시브 세럼 제형">`);
     } else if (config.kind === 'gel') {
       visual.querySelector('.sku-product').remove();
       visual.insertAdjacentHTML('afterbegin', gel(product));

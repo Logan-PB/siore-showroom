@@ -71,3 +71,10 @@
 @media(max-width:699px){#presentation .featured-skus .package-packshot{height:190px}#presentation .featured-skus .pouch-packshot{width:168px;height:210px;left:calc(78% - 84px);top:9px}}
 @media(prefers-reduced-motion:reduce){#featured-skus .is-dispensing svg *{animation:none!important}}
 @media print{#featured-skus svg *{animation:none!important}.dispense-effects,.gel-open-mouth,.gel-lid-inside,.pouch-mouth,.pouch-tear-line{display:none!important}}
+
+#presentation #featured-skus [data-motion=serum] .sku-visual{isolation:isolate;overflow:hidden}
+#presentation #featured-skus [data-motion=serum] .serum-texture-reveal{position:absolute;inset:0;width:100%;height:100%;margin:0;object-fit:contain;filter:none;z-index:-1;clip-path:inset(0 100% 0 0);opacity:1}
+#presentation #featured-skus [data-motion=serum].is-dispensing .serum-texture-reveal{animation:serumTextureSpread var(--motion-cycle,8.8s) ease-in-out infinite;animation-delay:var(--motion-delay,0s)}
+#presentation #featured-skus [data-motion=serum] img.sku-product{position:relative;z-index:1}
+@keyframes serumTextureSpread{0%,12%{clip-path:inset(0 100% 0 0)}42%,85%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 100% 0 0)}}
+@media(prefers-reduced-motion:reduce){#presentation #featured-skus [data-motion=serum] .serum-texture-reveal{animation:none!important;clip-path:none}}
