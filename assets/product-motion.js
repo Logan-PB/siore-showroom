@@ -76,9 +76,11 @@
     </svg>`;
   }
   configs.forEach((config, index) => {
-    const original = gallery.children[index];
-    if (!original || original.dataset.motion) return;
     const product = skuProducts[config.id];
+    const original = Array.from(gallery.children).find(card =>
+      card.querySelector('.sku-product')?.getAttribute('src') === product.image
+    );
+    if (!original || original.dataset.motion) return;
     const tile = document.createElement('article');
     tile.className = original.className;
     tile.dataset.productLine = original.dataset.productLine;
