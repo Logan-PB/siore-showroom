@@ -1,5 +1,5 @@
 function supplyPrice(p){if(supplyMode!=='custom'&&p[0].startsWith('마시는 PDRN'))return supplyMode==='vip'?13600:16800;return Math.round(p[2]*supplyRate/100)}
-const influencerRequestUrl='https://docs.google.com/forms/d/e/1FAIpQLSf9Fs_Srsn04sd9LNjyPbydjHFPa-yso2rWGgcAtYC-u_oZkA/viewform';
+const influencerRequestUrl='https://docs.google.com/forms/d/e/1FAIpQLScBMYsK1Uu-9zJ6oon1CRINne1SjBeql7DoBhRhSs3ulPXq-Q/viewform';
 const priceViewerUrl='https://logan-pb.github.io/siore-price-card/';
 async function copyTextButton(url,button){try{await navigator.clipboard.writeText(url);const old=button.textContent;button.textContent='복사 완료';setTimeout(()=>button.textContent=old,1600)}catch{prompt('아래 링크를 복사해 주세요.',url)}}
 function copyPartnerLink(type,button){return copyTextButton(type==='form'?influencerRequestUrl:'https://k.link-pb.com/home',button)}
