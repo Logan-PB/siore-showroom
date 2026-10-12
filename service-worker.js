@@ -1,5 +1,5 @@
 /* Prefer current sales materials online; retain cached responses for offline use. */
-const CACHE_NAME = 'siore-showroom-live-v19-20261001';
+const CACHE_NAME = 'siore-showroom-live-v20-20261008';
 self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', event => {
   event.waitUntil((async () => {
