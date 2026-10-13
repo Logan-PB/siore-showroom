@@ -44,6 +44,15 @@
       </g>
     </svg>`;
   }
+  function caplessMilk(p) {
+    return `<svg class="package-packshot pump-packshot" viewBox="0 0 422 723" aria-hidden="true">
+    <defs><clipPath id="milk-new-body"><rect y="99" width="422" height="624"/></clipPath><clipPath id="milk-new-head"><rect width="422" height="99"/></clipPath></defs>
+    <image href="${p.image}" width="422" height="723" clip-path="url(#milk-new-body)"/>
+    <rect x="212" y="79" width="59" height="33" rx="4" fill="#eceeed"/>
+    <g class="pump-actuator"><image href="${p.image}" width="422" height="723" clip-path="url(#milk-new-head)"/></g>
+    <g class="dispense-effects pump-output"><path class="dispense-thread" d="M129 75 C104 77 96 103 98 128" fill="none" stroke="#fffaf1" stroke-width="9" stroke-linecap="round" pathLength="1"/></g>
+    </svg>`;
+  }
   function gel(p) {
     return `<svg class="package-packshot gel-packshot" viewBox="0 0 425 1198" aria-hidden="true">
       <defs>
@@ -95,7 +104,7 @@
     visual.setAttribute('aria-label', `${product.name}. ${config.label}`);
     if (config.kind === 'milk' || config.kind === 'foam') {
       visual.querySelector('.sku-product').remove();
-      visual.insertAdjacentHTML('afterbegin', pump(product, config));
+      visual.insertAdjacentHTML('afterbegin', config.kind === 'milk' ? caplessMilk(product) : pump(product, config));
     } else if (config.kind === 'serum') {
       visual.querySelector('.sku-product').remove();
       visual.insertAdjacentHTML('afterbegin', pump(product, config));
