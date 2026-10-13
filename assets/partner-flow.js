@@ -16,7 +16,7 @@ function renderPrices(){
  const g=groups[i];
  return (g?`<tr class="price-line price-${g[0]}"><th colspan="${visible?5:4}" scope="rowgroup">${g[1]}</th></tr>`:'')+`<tr class="price-product ${i<5?'price-nmn':i<9?'price-relief':'price-inner'}"><td>${p[0]}</td><td>${p[1]}</td><td>${p[2].toLocaleString('ko-KR')}원</td>${visible?`<td>${supplyPrice(p).toLocaleString('ko-KR')}원</td>`:''}<td>${p[3].toLocaleString('ko-KR')}원</td></tr>`;
  }).join('');
- document.getElementById('price-save').disabled=!visible;
+ const save=document.getElementById('price-save');if(save)save.disabled=!visible;
  const share=document.getElementById('price-share');if(share)share.hidden=true;
  document.getElementById('price-status').textContent='';
 }
