@@ -80,3 +80,10 @@
 @media(prefers-reduced-motion:reduce){#presentation #featured-skus [data-motion=serum] .serum-texture-reveal{animation:none!important;clip-path:none}}
 
 [data-motion=serum] .pump-protection-cap{transform-origin:327px 309px}
+
+/* Reveal the original sharp texture at the dispensing point; hold for 3 seconds. */
+#presentation #featured-skus [data-motion]>.sku-swatch{clip-path:inset(0 100% 0 0);opacity:1!important;filter:none!important;animation:none;transform:none!important}
+#presentation #featured-skus [data-motion].is-dispensing>.sku-swatch{animation:dispensedTextureReveal var(--motion-cycle,8.8s) cubic-bezier(.25,.1,.25,1) var(--motion-delay,0s) infinite both}
+@keyframes dispensedTextureReveal{0%,38%{clip-path:inset(0 100% 0 0)}52%,86%{clip-path:inset(0 0 0 0)}96%,100%{clip-path:inset(0 100% 0 0)}}
+@media(prefers-reduced-motion:reduce){#presentation #featured-skus [data-motion]>.sku-swatch{animation:none!important;clip-path:none}}
+@media print{#presentation #featured-skus [data-motion]>.sku-swatch{animation:none!important;clip-path:none}}

@@ -108,7 +108,6 @@
     } else if (config.kind === 'serum') {
       visual.querySelector('.sku-product').remove();
       visual.insertAdjacentHTML('afterbegin', pump(product, config));
-      visual.insertAdjacentHTML('afterbegin', `<img class="serum-texture-reveal" src="${product.textureImage}" alt="인텐시브 세럼 제형">`);
     } else if (config.kind === 'gel') {
       visual.querySelector('.sku-product').remove();
       visual.insertAdjacentHTML('afterbegin', gel(product));
