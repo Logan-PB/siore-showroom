@@ -6,15 +6,15 @@
   const configs = [
     { id: 0, kind: 'milk', label: '보호캡을 벗기고 펌프에서 밀크가 나오는 모습', split: 174, nozzle: [258, 142] },
     { id: 1, kind: 'foam', label: '보호캡을 벗기고 펌프에서 거품이 나오는 모습', split: 305, nozzle: [239, 133] },
-    { id: 2, kind: 'serum', label: '제품 뒤로 세럼 제형이 펼쳐지는 모습' },
+    { id: 2, kind: 'serum', label: '보호캡을 벗기고 펌프에서 세럼이 나오는 모습', split: 309, nozzle: [266, 162] },
     { id: 7, kind: 'gel', label: '아래 뚜껑을 열고 젤을 짜내는 모습' },
     { id: 9, kind: 'liquid', label: '스틱 포의 상단을 찢고 액상이 나오는 모습' }
   ];
   function pump(p, config) {
-    const tag = `pump-${config.id}`, milk = config.kind === 'milk';
+    const tag = `pump-${config.id}`, milk = config.kind !== 'foam', serum = config.kind === 'serum';
     const [x, y] = config.nozzle;
-    const cap = milk ? { x: 247, y: 73, w: 149, h: 102 } : { x: 194, y: 74, w: 261, h: 245 };
-    const actuator = milk
+    const cap = serum ? { x: 226, y: 128, w: 202, h: 181 } : milk ? { x: 247, y: 73, w: 149, h: 102 } : { x: 194, y: 74, w: 261, h: 245 };
+    const actuator = serum ? 'M264 150 Q270 145 303 148 H335 Q371 148 371 187 V228 H382 V285 H275 V225 H288 V174 H264Z' : milk
       ? 'M258 106 Q258 88 279 88 H359 Q382 88 382 108 V171 H263 V148 H254 V110Z'
       : 'M235 111 Q250 90 295 99 L359 109 Q389 112 391 154 V262 H408 V300 H257 V260 H275 V143 H236Z';
     return `<svg class="package-packshot pump-packshot" viewBox="0 0 654 1103" aria-hidden="true">
@@ -28,7 +28,7 @@
         <radialGradient id="${tag}-foam" cx=".3" cy=".25" r=".8"><stop stop-color="#fff"/><stop offset=".6" stop-color="#f9fcff"/><stop offset="1" stop-color="#b9d0d9"/></radialGradient>
       </defs>
       <image href="${p.image}" width="654" height="1103" clip-path="url(#${tag}-body)"/>
-      <rect x="${milk ? 290 : 299}" y="${milk ? 150 : 243}" width="${milk ? 68 : 80}" height="${milk ? 53 : 90}" rx="8" fill="url(#${tag}-white)"/>
+      <rect x="${serum ? 298 : milk ? 290 : 299}" y="${serum ? 264 : milk ? 150 : 243}" width="${milk ? 68 : 80}" height="${serum ? 66 : milk ? 53 : 90}" rx="8" fill="url(#${tag}-white)"/>
       <g class="pump-actuator">
         <image href="${p.image}" width="654" height="1103" clip-path="url(#${tag}-actuator)"/>
         <rect x="${x - 5}" y="${y - 3}" width="14" height="9" rx="4" fill="#d0d5d6"/><ellipse cx="${x - 2}" cy="${y + 1}" rx="4" ry="3" fill="#919d9f"/>
@@ -97,6 +97,8 @@
       visual.querySelector('.sku-product').remove();
       visual.insertAdjacentHTML('afterbegin', pump(product, config));
     } else if (config.kind === 'serum') {
+      visual.querySelector('.sku-product').remove();
+      visual.insertAdjacentHTML('afterbegin', pump(product, config));
       visual.insertAdjacentHTML('afterbegin', `<img class="serum-texture-reveal" src="${product.textureImage}" alt="인텐시브 세럼 제형">`);
     } else if (config.kind === 'gel') {
       visual.querySelector('.sku-product').remove();
