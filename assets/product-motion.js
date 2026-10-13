@@ -4,7 +4,7 @@
   if (!gallery) return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const configs = [
-    { id: 0, kind: 'milk', label: '보호캡을 벗기고 펌프에서 밀크가 나오는 모습', split: 174, nozzle: [258, 142] },
+    { id: 0, kind: 'milk', label: '캡 없는 펌프에서 클렌징밀크가 나오는 모습', capless: true, split: 174, nozzle: [258, 142] },
     { id: 1, kind: 'foam', label: '보호캡을 벗기고 펌프에서 거품이 나오는 모습', split: 305, nozzle: [239, 133] },
     { id: 2, kind: 'serum', label: '보호캡을 벗기고 펌프에서 세럼이 나오는 모습', split: 309, nozzle: [266, 162] },
     { id: 7, kind: 'gel', label: '아래 뚜껑을 열고 젤을 짜내는 모습' },
@@ -33,11 +33,11 @@
         <image href="${p.image}" width="654" height="1103" clip-path="url(#${tag}-actuator)"/>
         <rect x="${x - 5}" y="${y - 3}" width="14" height="9" rx="4" fill="#d0d5d6"/><ellipse cx="${x - 2}" cy="${y + 1}" rx="4" ry="3" fill="#919d9f"/>
       </g>
-      <g class="pump-protection-cap">
+      ${config.capless ? '' : `<g class="pump-protection-cap">
         <rect x="${cap.x + 2}" y="${cap.y + 4}" width="${cap.w - 4}" height="${cap.h - 5}" rx="${milk ? 8 : 23}" fill="url(#${tag}-clear)" stroke="#e7eef2" stroke-opacity=".65" stroke-width="2"/>
         <image href="${p.image}" width="654" height="1103" clip-path="url(#${tag}-cap-edge)"/>
         <path d="M${cap.x + 13} ${cap.y + 18} V${cap.y + cap.h - 11}" fill="none" stroke="#fff" stroke-opacity=".6" stroke-width="4"/>
-      </g>
+      </g>`}
       <g class="dispense-effects pump-output">
         <path class="dispense-thread" d="M${x - 2} ${y + 23} C${x - 65} ${y + 20} ${x - 105} ${y + 57} ${x - 108} ${y + 130}" fill="none" stroke="url(#${tag}-milk)" stroke-width="${milk ? 17 : 23}" stroke-linecap="round" pathLength="1"/>
         ${milk ? `<path class="milk-bead" d="M148 270 C145 293 121 310 124 334 C127 358 165 365 176 344 C187 322 161 295 148 270Z" fill="url(#${tag}-milk)"/><path class="milk-glint" d="M140 318 Q133 334 143 342" fill="none" stroke="white" stroke-width="5" stroke-linecap="round"/>` : `<g class="foam-cloud" fill="url(#${tag}-foam)" stroke="#edf7fb" stroke-width="1.5"><circle cx="120" cy="247" r="37"/><circle cx="87" cy="274" r="29"/><circle cx="148" cy="274" r="41"/><circle cx="111" cy="297" r="37"/><circle cx="149" cy="309" r="23"/><circle cx="89" cy="241" r="15"/><circle cx="165" cy="241" r="16"/></g><g class="foam-satellites" fill="url(#${tag}-foam)"><circle cx="63" cy="230" r="8"/><circle cx="172" cy="202" r="10"/><circle cx="79" cy="188" r="6"/></g>`}
