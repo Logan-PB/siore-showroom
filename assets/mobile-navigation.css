@@ -1,0 +1,9 @@
+/* Keep the mobile header in normal flow so scrolling content never sits behind it. */
+@media(max-width:699px),(orientation:portrait){
+ #presentation>header{position:relative!important;top:auto!important;height:auto!important;display:flex!important;flex-wrap:wrap!important;gap:8px!important;padding:10px 10px 8px!important;background:#100f0e;z-index:1!important}
+ #presentation>header .brand,#presentation>header .cover-brand{font-size:24px!important;letter-spacing:3px!important;padding:4px 8px!important;min-height:40px!important}
+ #presentation>header .language-selector{margin-left:auto;font-size:12px;padding:4px 8px}
+ #presentation>header>nav{order:3!important;display:grid!important;grid-template-columns:1fr 1fr 1.45fr 1fr 1fr!important;width:100%!important;min-width:0;gap:4px!important;overflow:visible!important;flex-wrap:nowrap!important}
+ #presentation>header>nav button{width:100%;min-width:0;min-height:44px;padding:7px 2px!important;font-size:clamp(9px,2.2vw,14px)!important;line-height:1.2;letter-spacing:-.4px;white-space:nowrap!important;border-radius:8px!important}
+ :root[data-theme=light] #presentation>header{background:#faf7f2}
+}
