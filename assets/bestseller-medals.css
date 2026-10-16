@@ -15,3 +15,21 @@
 @keyframes rankShine{0%,30%{transform:translateX(-85%)}80%,100%{transform:translateX(85%)}}
 @media(max-width:699px){#presentation #featured-skus{row-gap:48px}#presentation #featured-skus .sku-bestseller{min-width:140px;height:60px;gap:10px;padding:6px 12px}#presentation #featured-skus .sku-bestseller b{font-size:40px}#presentation #featured-skus .sku-bestseller sup{font-size:18px}#presentation #featured-skus .sku-bestseller .badge-label{font-size:14px;padding-left:10px}}
 @media(prefers-reduced-motion:reduce){#presentation #featured-skus .sku-bestseller:before,#presentation #featured-skus .sku-bestseller:after{animation:none!important;display:none}}
+
+/* Keep product actions inside the slide, separate from the presentation footer. */
+#presentation #featured-skus .sku-tile:before,#presentation #featured-skus .sku-tile:after{display:none!important;pointer-events:none!important}
+#presentation .sku-route{position:relative;z-index:6;flex-shrink:0}
+#presentation .sku-route button{position:relative;pointer-events:auto}
+@media(min-width:700px) and (orientation:landscape){
+ #presentation .screen.active:has(>#featured-skus){display:flex;flex-direction:column;gap:12px;overflow:hidden}
+ #presentation .screen:has(>#featured-skus)>.sku-heading{flex:none;margin-bottom:0}
+ #presentation #featured-skus{flex:1;min-height:0;grid-template-rows:minmax(0,1fr);padding-top:40px}
+ #presentation #featured-skus .sku-tile{min-height:0;padding-top:14px;padding-bottom:12px}
+ #presentation #featured-skus .sku-category{flex:none}
+ #presentation #featured-skus .sku-visual{flex:1;min-height:100px;height:auto}
+ #presentation #featured-skus .package-packshot,#presentation #featured-skus .sku-visual img.sku-product{height:calc(100% - 20px);margin:10px 0}
+ #presentation #featured-skus .pouch-packshot{height:calc(100% - 20px);top:10px}
+ #presentation #featured-skus .sku-line,#presentation #featured-skus .sku-size,#presentation #featured-skus .sku-more,#presentation #featured-skus .texture-ingredient-note,#presentation #featured-skus .sku-tile>strong{flex-shrink:0}
+ #presentation .screen:has(>#featured-skus)>.sku-route{margin-top:0;min-height:44px}
+ #presentation>.footer{position:relative;z-index:7;background:#100f0e}
+}
